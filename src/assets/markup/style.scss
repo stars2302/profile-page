@@ -1,9 +1,13 @@
 // base
 @use 'base/reset.scss' as *;
 
+// components
+@use 'components/button.scss' as *;
+
 //layout
 @use 'layout/layout.scss' as *;
 @use 'layout/profile.scss' as *;
 
 //pages
 @use 'pages/project.scss' as *;
+@use 'pages/more.scss' as *;

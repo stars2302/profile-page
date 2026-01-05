@@ -1,0 +1,30 @@
+@use '../base/util.scss' as *;
+
+.more-cont {
+  padding-block: 20px;
+
+  .more-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #54476A;
+    padding: 10px 4px;
+    font-size: 14px;
+    gap: 20px;
+    cursor: pointer;
+    .icon {font-size: 18px;}
+    .more-name {
+      flex: 1;
+      min-width: 0;
+      @include text-ellipsis;
+    }
+    .more-btn {
+      transition: 0.3s;
+      margin-right: 6px;
+    }
+  }
+
+  .more-item:hover .more-btn {
+    transform: translateX(6px);
+  }
+}
