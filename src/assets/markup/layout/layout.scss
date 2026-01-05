@@ -1,0 +1,47 @@
+.page-wrap {
+  width: 100%;
+  height: 100dvh;
+  background: linear-gradient(to bottom, #142131, #000113);
+  color: #fff;
+  position: relative;
+  padding-inline: 20px;
+}
+
+.decos {
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+}
+.deco1 {
+  pointer-events: none;
+  position: absolute;
+  top: -30%;
+  left: -42%;
+  width: 110%;
+  height: 68%;
+  background: radial-gradient(ellipse, #F37261 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.8;
+  transform: rotate(-15deg);
+  z-index: 0;
+}
+.deco2 {
+  pointer-events: none;
+  position: absolute;
+  bottom: -26%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 34%;
+  background: #842CF2;
+  border-radius: 50%;
+  filter: blur(75px);
+  opacity: 0.80;
+  z-index: 0;
+}
+
+.contents-wrap {
+  position: relative;
+  z-index: 1;
+}
