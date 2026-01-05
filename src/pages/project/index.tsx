@@ -1,10 +1,18 @@
 function Project() {
   return (
-    <div className="contents">
-      <h2>Projects</h2>
-      <p>프로젝트 목록...</p>
+    <div className="project-cont">
+      <ul className="project-list">
+        {[...Array(20)].map((_, index) => (
+          <li className="project-item" key={index}>
+            <img
+              src={`https://picsum.photos/id/${index + 10}/300/300`}
+              alt=""
+            />
+          </li>
+        ))}
+      </ul>
     </div>
-  )
+  );
 }
 
-export default Project
+export default Project;

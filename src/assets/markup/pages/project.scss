@@ -1,0 +1,19 @@
+.project-cont {
+  padding-block: 20px;
+
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 14px;
+  }
+
+  .project-item {
+    cursor: pointer; 
+  }
+  img {
+    width: 100%;
+    aspect-ratio: 107/96;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}

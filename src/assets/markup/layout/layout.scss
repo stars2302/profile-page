@@ -1,15 +1,17 @@
 .page-wrap {
   width: 100%;
   height: 100dvh;
+  overflow-y: auto;
   background: linear-gradient(to bottom, #142131, #000113);
   color: #fff;
   position: relative;
   padding-inline: 20px;
+  overscroll-behavior: none;
 }
 
 .decos {
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   inset: 0;
 }
 .deco1 {
