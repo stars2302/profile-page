@@ -1,3 +1,6 @@
-body {
-    background-color: #ddd;
-}
+// base
+@use 'base/reset.scss' as *;
+
+//layout
+@use 'layout/layout.scss' as *;
+@use 'layout/profile.scss' as *;
