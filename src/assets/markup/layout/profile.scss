@@ -61,7 +61,7 @@
         border-top-right-radius: 12px;
       }
       &::after {
-        left: calc(100% + 20px);
+        left: calc(100% + 19px);
         clip-path: path('M 50 0 L 50 50 Q 0 50 0 0 L 50 0 L 0 0 L 0 50 L 50 50 Z');
       }
     }
@@ -72,7 +72,7 @@
         border-top-left-radius: 12px;
       }
       &::after {
-        right: calc(100% + 20px);
+        right: calc(100% + 19px);
         clip-path: path('M 0 0 L 0 50 Q 50 50 50 0 L 0 0 L 50 0 L 50 50 L 0 50 Z');
       }
     }
