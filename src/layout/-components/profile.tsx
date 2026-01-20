@@ -1,13 +1,16 @@
-
-
-import Nav from './nav';
+import Nav from "./nav";
+import profileImg from "@/assets/images/person.svg"; // 프로필 이미지
 
 function Profile() {
-
   return (
     <>
       <div className="profile-area">
-        <div className="profile-img-wrap"></div>
+        <div className="profile-img-wrap">
+          <img src={profileImg} alt="" />
+          <object>
+            <embed src={profileImg} />
+          </object>
+        </div>
         <div className="bg-top-area">
           <div className="left-bg"></div>
           <div className="right-bg"></div>
@@ -16,14 +19,16 @@ function Profile() {
         <div className="profile-contents">
           <div className="profile-info">
             <h2 className="profile-name">Na Seo Young</h2>
-            <a href="mailto:stars2302@naver.com" className="profile-email">stars2302@naver.com</a>
+            <a href="mailto:stars2302@naver.com" className="profile-email">
+              stars2302@naver.com
+            </a>
           </div>
-          
+
           <Nav />
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Profile
+export default Profile;
