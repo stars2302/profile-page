@@ -1,5 +1,11 @@
+@use 'sass:math';
+
 @mixin text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@function rem($px) {
+  @return #{math.div($px, 16px)}rem;
 }

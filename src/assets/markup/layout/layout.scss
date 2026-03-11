@@ -1,3 +1,5 @@
+@use '../base/util.scss' as *;
+
 .page-wrap {
   width: 100%;
   height: 100dvh;
@@ -5,7 +7,7 @@
   background: linear-gradient(to bottom, #142131, #000113);
   color: #fff;
   position: relative;
-  padding-inline: 20px;
+  padding-inline: rem(20px);
   overscroll-behavior: none;
 }
 
@@ -23,7 +25,7 @@
   height: 68%;
   background: radial-gradient(ellipse, #F37261 0%, transparent 60%);
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(rem(80px));
   opacity: 0.8;
   transform: rotate(-15deg);
   z-index: 0;
@@ -38,7 +40,7 @@
   height: 34%;
   background: #842CF2;
   border-radius: 50%;
-  filter: blur(75px);
+  filter: blur(rem(75px));
   opacity: 0.80;
   z-index: 0;
 }
