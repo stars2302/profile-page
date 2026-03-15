@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
@@ -40,26 +40,45 @@ function Nav() {
     }
   };
 
+  const syncBar = (index: number) => {
+    requestAnimationFrame(() => {
+      updateBar(index);
+    });
+  };
+
   // 경로 변경 시 active index 업데이트
   useEffect(() => {
     const newIndex = getActiveIndexFromPath(location.pathname);
     setActiveIndex(newIndex);
-    // updateBar는 별도 effect에서 처리
   }, [location.pathname]);
 
-  // activeIndex 변경 시 bar 업데이트
-  useEffect(() => {
-    updateBar(activeIndex);
-  }, [activeIndex]); // activeIndex를 의존성에 추가
+  useLayoutEffect(() => {
+    syncBar(activeIndex);
+  }, [activeIndex, location.pathname]);
 
-  // 윈도우 리사이즈 시 bar 위치 업데이트
   useEffect(() => {
     const handleResize = () => {
-      updateBar(activeIndex);
+      syncBar(activeIndex);
     };
 
+    const nav = navRef.current;
+    const resizeObserver = nav ? new ResizeObserver(() => syncBar(activeIndex)) : null;
+
+    if (nav && resizeObserver) {
+      resizeObserver.observe(nav);
+    }
+
+    if ("fonts" in document) {
+      document.fonts.ready.then(() => {
+        syncBar(activeIndex);
+      });
+    }
+
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      resizeObserver?.disconnect();
+    };
   }, [activeIndex]);
 
   return (
