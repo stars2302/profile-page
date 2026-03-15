@@ -2,12 +2,12 @@ export const data = {
   "skills": [
     {
       "name": "HTML5",
-      "icon": "material-icon-theme:html5",
+      "icon": "vscode-icons:file-type-html",
       "hidden": true
     },
     {
       "name": "CSS3",
-      "icon": "material-icon-theme:css3",
+      "icon": "vscode-icons:file-type-css",
       "hidden": true  
     },
     {
@@ -22,7 +22,7 @@ export const data = {
     },
     {
       "name": "jQuery",
-      "icon": "logos:jquery",
+      "icon": "devicon:jquery-wordmark",
       "hidden": true
     },
     {
