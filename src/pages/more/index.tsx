@@ -5,7 +5,7 @@ function More() {
     <div className="more-cont">
       <ul>
         {[...Array(20)].map((_, index) => (
-          <li className="more-item">
+          <li key={index} className="more-item">
             <p className="more-name">
               lorem ipsum dolor sit amet consectetur adipisicing elit.
               Praesentium ipsa at amet repellat blanditiis similique quis. Rem,

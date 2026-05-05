@@ -130,13 +130,73 @@
 // nav
 .profile-nav {
   position: relative;
-  padding-bottom: rem(24px);
+  padding-bottom: rem(18px);
+  padding-top: rem(16px);
   pointer-events: all;
+  display: flex;
+  align-items: center;
+
+
+  &.is-placeholder {
+    visibility: hidden;
+  }
+
+  &.is-fixed {
+    position: fixed;
+    top: 0;
+    left: rem(20px);
+    right: rem(20px);
+    z-index: 10;
+    background: linear-gradient(#1c263e, #162036);
+    border-radius: 0 0 rem(35px) rem(35px);
+  }
+
+  .nav-profile {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 0;
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+    // overflow: hidden;
+    transform: translateX(rem(-8px));
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: max-width 0.3s ease, margin-left 0.3s ease, opacity 0.2s ease, transform 0.3s ease, gap 0.3s ease;
+
+    .profile-img-wrap {
+      flex: 0 0 auto;
+      width: rem(32px);
+      height: rem(32px);
+      position: static;
+      transform: translateY(rem(14px));
+      margin-top: rem(-30px);
+
+      img {
+        width: 84%;
+      }
+    }
+  }
+
+  &.is-profile-visible {
+    .nav-profile {
+      gap: rem(10px);
+      max-width: rem(180px);
+      margin-left: rem(20px);
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
   ul {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex: 1;
+    min-width: 0;
+    transition: flex-basis 0.3s ease, max-width 0.3s ease;
   }
 
   li {
@@ -150,7 +210,7 @@
     border-radius: rem(10px);
     background-color: #FFB829;
     position: absolute;
-    bottom: rem(18px);
+    bottom: rem(14px);
     left: 0;
     transition: 0.3s;
   }

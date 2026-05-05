@@ -1,6 +1,8 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { type RefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import profileImg from "@/assets/images/person.svg"; // 프로필 이미지
 
 const navItems = [
   { name: "About", path: "/about" },
@@ -11,8 +13,16 @@ const navItems = [
 
 function Nav() {
   const location = useLocation();
-  const navRef = useRef<HTMLUListElement>(null);
+  const profileNavRef = useRef<HTMLElement>(null);
+  const fixedNavRef = useRef<HTMLElement>(null);
+  const originalNavListRef = useRef<HTMLUListElement>(null);
+  const fixedNavListRef = useRef<HTMLUListElement>(null);
+  const scrollContainerRef = useRef<HTMLElement>(null);
+  const navOffsetTopRef = useRef(0);
+  const shouldResetScrollRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isFixed, setIsFixed] = useState(false);
+  const [showFixedProfile, setShowFixedProfile] = useState(false);
   const [barStyle, setBarStyle] = useState({ left: 0, width: 0 });
 
   // 현재 경로로 active index 찾기
@@ -21,15 +31,24 @@ function Nav() {
     return index !== -1 ? index : 0;
   };
 
+  const getActiveNavList = () => {
+    return isFixed ? fixedNavListRef.current : originalNavListRef.current;
+  };
+
+  const getActiveNav = () => {
+    return isFixed ? fixedNavRef.current : profileNavRef.current;
+  };
+
   const updateBar = (index: number) => {
-    const nav = navRef.current;
-    if (!nav) return;
+    const nav = getActiveNavList();
+    const profileNav = getActiveNav();
+    if (!nav || !profileNav) return;
 
     const lis = nav.querySelectorAll("li");
     const activeLi = lis[index];
 
     if (activeLi) {
-      const navLeft = nav.getBoundingClientRect().left;
+      const navLeft = profileNav.getBoundingClientRect().left;
       const liLeft = activeLi.getBoundingClientRect().left;
       const liWidth = activeLi.offsetWidth;
 
@@ -46,22 +65,137 @@ function Nav() {
     });
   };
 
+  const resetScrollToFixedPosition = () => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    scrollContainer.scrollTo({
+      top: navOffsetTopRef.current,
+    });
+  };
+
+  const handleMenuClick = () => {
+    if (!isFixed) return;
+
+    shouldResetScrollRef.current = true;
+  };
+
   // 경로 변경 시 active index 업데이트
   useEffect(() => {
     const newIndex = getActiveIndexFromPath(location.pathname);
     setActiveIndex(newIndex);
+
+    if (shouldResetScrollRef.current) {
+      shouldResetScrollRef.current = false;
+      requestAnimationFrame(resetScrollToFixedPosition);
+    }
   }, [location.pathname]);
 
   useLayoutEffect(() => {
     syncBar(activeIndex);
-  }, [activeIndex, location.pathname]);
+  }, [activeIndex, location.pathname, isFixed, showFixedProfile]);
+
+  useEffect(() => {
+    if (!isFixed) {
+      setShowFixedProfile(false);
+      return;
+    }
+
+    const frame = requestAnimationFrame(() => {
+      setShowFixedProfile(true);
+      syncBar(activeIndex);
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, [activeIndex, isFixed]);
+
+  useLayoutEffect(() => {
+    const profileNav = profileNavRef.current;
+    const scrollContainer = profileNav?.closest(".page-wrap");
+    if (!profileNav || !(scrollContainer instanceof HTMLElement)) return;
+
+    scrollContainerRef.current = scrollContainer;
+
+    const updateNavOffsetTop = () => {
+      const navRect = profileNav.getBoundingClientRect();
+      const containerRect = scrollContainer.getBoundingClientRect();
+      navOffsetTopRef.current = scrollContainer.scrollTop + navRect.top - containerRect.top;
+    };
+
+    const updateFixedState = () => {
+      setIsFixed(scrollContainer.scrollTop >= navOffsetTopRef.current);
+    };
+
+    const syncFixedNav = () => {
+      updateNavOffsetTop();
+      updateFixedState();
+    };
+
+    syncFixedNav();
+
+    scrollContainer.addEventListener("scroll", updateFixedState, { passive: true });
+    window.addEventListener("resize", syncFixedNav);
+
+    return () => {
+      scrollContainer.removeEventListener("scroll", updateFixedState);
+      window.removeEventListener("resize", syncFixedNav);
+    };
+  }, []);
+
+  const renderNavContents = (navListRef: RefObject<HTMLUListElement | null>) => (
+    <>
+      <div className="nav-profile">
+        <div className="profile-img-wrap">
+          <img src={profileImg} alt="" />
+        </div>
+        <h2 className="profile-name">Na Seo Young</h2>
+      </div>
+      <ul ref={navListRef}>
+        {navItems.map((item, index) => (
+          <li key={item.name} className={activeIndex === index ? "active" : ""}>
+            {item.external ? (
+              <a href={item.path} target="_blank" rel="noopener noreferrer">
+                {item.name}
+                <Icon className="icon" icon="fa7-solid:external-link" />
+              </a>
+            ) : (
+              <Link to={item.path} onClick={handleMenuClick}>
+                {item.name}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div
+        className="bar"
+        style={{
+          left: `${barStyle.left}px`,
+          width: `${barStyle.width}px`,
+        }}
+      />
+    </>
+  );
+
+  const fixedNav = isFixed
+    ? createPortal(
+        <nav
+          ref={fixedNavRef}
+          className={`profile-nav is-fixed${showFixedProfile ? " is-profile-visible" : ""}`}
+        >
+          {renderNavContents(fixedNavListRef)}
+        </nav>,
+        document.body
+      )
+    : null;
 
   useEffect(() => {
     const handleResize = () => {
       syncBar(activeIndex);
     };
 
-    const nav = navRef.current;
+    const nav = getActiveNavList();
     const resizeObserver = nav ? new ResizeObserver(() => syncBar(activeIndex)) : null;
 
     if (nav && resizeObserver) {
@@ -79,32 +213,15 @@ function Nav() {
       window.removeEventListener("resize", handleResize);
       resizeObserver?.disconnect();
     };
-  }, [activeIndex]);
+  }, [activeIndex, isFixed]);
 
   return (
-    <nav className="profile-nav">
-      <ul ref={navRef}>
-        {navItems.map((item, index) => (
-          <li key={item.name} className={activeIndex === index ? "active" : ""}>
-            {item.external ? (
-              <a href={item.path} target="_blank" rel="noopener noreferrer">
-                {item.name}
-                <Icon className="icon" icon="fa7-solid:external-link" />
-              </a>
-            ) : (
-              <Link to={item.path}>{item.name}</Link>
-            )}
-          </li>
-        ))}
-      </ul>
-      <div
-        className="bar"
-        style={{
-          left: `${barStyle.left}px`,
-          width: `${barStyle.width}px`,
-        }}
-      />
-    </nav>
+    <>
+      <nav ref={profileNavRef} className={`profile-nav${isFixed ? " is-placeholder" : ""}`}>
+        {renderNavContents(originalNavListRef)}
+      </nav>
+      {fixedNav}
+    </>
   );
 }
 
