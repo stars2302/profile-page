@@ -1,7 +1,7 @@
 @use '../base/util.scss' as *;
 
 .project-cont {
-  padding-block: rem(20px);
+  padding: rem(30px) rem(10px) rem(60px);
 
   .project-list {
     display: grid;
@@ -10,12 +10,234 @@
   }
 
   .project-item {
-    cursor: pointer; 
+    cursor: pointer;
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
   }
+
   img {
     width: 100%;
     aspect-ratio: 107/96;
     object-fit: cover;
     border-radius: rem(10px);
+  }
+}
+
+.project-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  .popup-dim {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.58);
+    cursor: pointer;
+  }
+
+  .popup-panel {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-height: calc(100dvh - #{rem(42px)});
+    padding: rem(28px) rem(20px) rem(32px);
+    overflow-y: auto;
+    border-radius: rem(28px) rem(28px) 0 0;
+    background: linear-gradient(to bottom, #25314A, #121a2c);
+    color: #fff;
+    animation: project-popup-up 0.34s ease both;
+  }
+
+  .popup-close {
+    position: absolute;
+    top: rem(18px);
+    right: rem(18px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(36px);
+    height: rem(36px);
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    cursor: pointer;
+
+    svg {
+      width: rem(22px);
+      height: rem(22px);
+    }
+  }
+
+  .popup-title {
+    margin: 0 rem(48px) rem(18px) 0;
+    font-size: rem(24px);
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .project-swiper {
+    overflow: hidden;
+    margin-inline: rem(-2px);
+    border-radius: rem(18px);
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 310 / 220;
+      object-fit: cover;
+      border-radius: rem(18px);
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: rem(34px);
+      height: rem(34px);
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.38);
+      color: #fff;
+
+      &::after {
+        font-size: rem(14px);
+        font-weight: 700;
+      }
+    }
+
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, 0.78);
+      opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #FFB829;
+    }
+  }
+
+  .popup-description {
+    margin: rem(22px) 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: rem(14px);
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  .project-meta {
+    display: grid;
+    gap: rem(12px);
+    margin: rem(22px) 0 0;
+
+    div {
+      display: grid;
+      gap: rem(5px);
+    }
+
+    dt {
+      color: rgba(255, 255, 255, 0.58);
+      font-size: rem(12px);
+      font-weight: 600;
+    }
+
+    dd {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: rem(14px);
+      line-height: 1.5;
+    }
+  }
+
+  .project-skills,
+  .project-insight {
+    margin-top: rem(24px);
+
+    h3 {
+      margin: 0 0 rem(12px);
+      font-size: rem(16px);
+      font-weight: 700;
+    }
+  }
+
+  .project-skills {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: rem(8px);
+    }
+
+    li {
+      padding: rem(7px) rem(10px);
+      border-radius: rem(999px);
+      background: rgba(255, 184, 41, 0.14);
+      color: #FFB829;
+      font-size: rem(12px);
+      font-weight: 600;
+    }
+  }
+
+  .project-insight {
+    ul {
+      display: grid;
+      gap: rem(10px);
+    }
+
+    li {
+      position: relative;
+      padding-left: rem(14px);
+      color: rgba(255, 255, 255, 0.78);
+      font-size: rem(14px);
+      line-height: 1.6;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: rem(10px);
+        left: 0;
+        width: rem(5px);
+        height: rem(5px);
+        border-radius: 50%;
+        background: #FFB829;
+      }
+    }
+  }
+
+  .project-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(8px);
+    width: 100%;
+    margin-top: rem(28px);
+    padding: rem(14px) rem(16px);
+    border-radius: rem(12px);
+    background: #FFB829;
+    color: #101828;
+    font-size: rem(15px);
+    font-weight: 700;
+    text-decoration: none;
+
+    .icon,
+    svg {
+      width: rem(14px);
+      height: rem(14px);
+    }
+  }
+}
+
+@keyframes project-popup-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
   }
 }

@@ -165,6 +165,7 @@
     font-weight: 600;
     white-space: nowrap;
     transition: max-width 0.3s ease, margin-left 0.3s ease, opacity 0.2s ease, transform 0.3s ease, gap 0.3s ease;
+    pointer-events: none;
 
     .profile-img-wrap {
       flex: 0 0 auto;
