@@ -111,8 +111,7 @@ function Project() {
               </div>
 
               <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
-                웹사이트 이동하기
-                <Icon icon="fa7-solid:external-link" />
+                웹 페이지로 이동하기
               </a>
             </div>
           </div>,
