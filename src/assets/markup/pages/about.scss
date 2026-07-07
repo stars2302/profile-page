@@ -186,73 +186,79 @@
     }
 
     &:nth-of-type(1) {
-      grid-column: 9 / span 4;
-      grid-row: 2;
+      grid-column: 2 / span 3;
+      grid-row: 3;
 
       svg {
-        width: rem(72px);
-        height: rem(72px);
+        width: rem(58px);
+        height: rem(58px);
       }
     }
 
     &:nth-of-type(2) {
-      grid-column: 2 / span 4;
-      grid-row: 9;
-      --skill-offset-x: #{rem(-10px)};
-      --skill-offset-y: #{rem(6px)};
+      grid-column: 8 / span 3;
+      grid-row: 3;
+      --skill-offset-x: #{rem(4px)};
+      --skill-offset-y: #{rem(2px)};
       --skill-float-duration: 5.8s;
       --skill-float-delay: -1.7s;
       animation-name: skill-float-alt;
 
       svg {
-        width: rem(52px);
-        height: rem(52px);
+        width: rem(56px);
+        height: rem(56px);
       }
     }
 
     &:nth-of-type(3) {
-      grid-column: 8 / span 4;
-      grid-row: 3;
-      --skill-offset-x: #{rem(-3px)};
+      grid-column: 5 / span 3;
+      grid-row: 5;
+      --skill-offset-x: #{rem(2px)};
       --skill-offset-y: #{rem(4px)};
       --skill-float-duration: 5s;
       --skill-float-delay: -0.8s;
+
+      svg {
+        width: rem(50px);
+        height: rem(50px);
+      }
     }
 
     &:nth-of-type(4) {
-      grid-column: 4 / span 5;
-      grid-row: 6;
-      --skill-offset-x: #{rem(8px)};
-      --skill-offset-y: #{rem(10px)};
+      grid-column: 1 / span 4;
+      grid-row: 8;
+      --skill-offset-x: #{rem(2px)};
+      --skill-offset-y: #{rem(6px)};
       --skill-float-duration: 6s;
       --skill-float-delay: -2.1s;
       animation-name: skill-float-alt;
 
       svg {
-        width: rem(54px);
-        height: rem(54px);
+        width: rem(60px);
+        height: rem(60px);
       }
     }
 
     &:nth-of-type(5) {
-      grid-column: 1 / span 4;
-      grid-row: 10;
-      --skill-offset-x: #{rem(-6px)};
-      --skill-offset-y: #{rem(8px)};
+      grid-column: 9 / span 4;
+      grid-row: 8;
+      --skill-offset-x: #{rem(-2px)};
+      --skill-offset-y: #{rem(4px)};
       --skill-float-duration: 6.4s;
       --skill-float-delay: -3s;
 
       svg {
-        width: rem(62px);
-        height: rem(62px);
+        width: rem(68px);
+        height: rem(68px);
+        color: #fff;
       }
     }
 
     &:nth-of-type(6) {
-      grid-column: 9 / span 4;
-      grid-row: 11;
-      --skill-offset-x: #{rem(5px)};
-      --skill-offset-y: #{rem(2px)};
+      grid-column: 3 / span 4;
+      grid-row: 12;
+      --skill-offset-x: #{rem(-2px)};
+      --skill-offset-y: #{rem(1px)};
       --skill-float-duration: 5.6s;
       --skill-float-delay: -1.1s;
       animation-name: skill-float-alt;
@@ -264,9 +270,9 @@
     }
 
     &:nth-of-type(7) {
-      grid-column: 5 / span 4;
-      grid-row: 10;
-      --skill-offset-x: #{rem(8px)};
+      grid-column: 7 / span 3;
+      grid-row: 12;
+      --skill-offset-x: #{rem(4px)};
       --skill-offset-y: #{rem(2px)};
       --skill-float-duration: 4.8s;
       --skill-float-delay: -2.6s;
@@ -278,10 +284,10 @@
     }
 
     &:nth-of-type(8) {
-      grid-column: 9 / span 3;
-      grid-row: 7;
-      --skill-offset-x: #{rem(14px)};
-      --skill-offset-y: #{rem(-8px)};
+      grid-column: 6 / span 3;
+      grid-row: 15;
+      --skill-offset-x: #{rem(6px)};
+      --skill-offset-y: #{rem(-2px)};
       --skill-float-duration: 5.2s;
       --skill-float-delay: -3.4s;
       animation-name: skill-float-alt;
@@ -329,6 +335,7 @@
       font-weight: 500;
       letter-spacing: -0.03em;
       word-break: keep-all;
+      text-transform: uppercase;
     }
 
     dd {

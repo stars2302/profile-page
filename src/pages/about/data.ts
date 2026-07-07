@@ -1,4 +1,7 @@
 export const data = {
+  // name: 스킬 이름
+  // icon: Iconify 기준 아이콘명
+  // hidden: true이면 이름 (name 값) 숨김
   "skills": [
     {
       "name": "HTML5",
@@ -8,7 +11,7 @@ export const data = {
     {
       "name": "CSS3",
       "icon": "vscode-icons:file-type-css",
-      "hidden": true  
+      "hidden": true
     },
     {
       "name": "SCSS",
@@ -22,7 +25,7 @@ export const data = {
     },
     {
       "name": "jQuery",
-      "icon": "devicon:jquery-wordmark",
+      "icon": "devicon:jquery",
       "hidden": true
     },
     {

@@ -32,9 +32,9 @@ function About() {
         {data.skills.map((skill) => (
           <div key={skill.name} className="skill">
             <Icon icon={skill.icon} />
-            <span className={`skill-name ${skill.hidden ? "hidden" : ""}`}>
+            {/* <span className={`skill-name ${skill.hidden ? "hidden" : ""}`}>
               {skill.name}
-            </span>
+            </span> */}
           </div>
         ))}
       </section>
@@ -45,7 +45,7 @@ function About() {
           {data.interview.map((item) => (
             <>
               <dt>
-                {item.id}.{item.question}
+                {item.id}. {item.question}
               </dt>
               <dd>{item.answer}</dd>
             </>
