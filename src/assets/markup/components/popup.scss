@@ -1,0 +1,81 @@
+@use '../base/util.scss' as *;
+
+.project-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  .popup-dim {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.58);
+    cursor: pointer;
+  }
+
+  .popup-panel {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-height: calc(100dvh - #{rem(42px)});
+    padding: 0 rem(20px) rem(32px);
+    overflow-y: auto;
+    border-radius: rem(28px) rem(28px) 0 0;
+    background: linear-gradient(to bottom, #25314A, #121a2c);
+    color: #fff;
+    animation: project-popup-up 0.34s ease both;
+  }
+
+  .popup-title-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #233049;
+    margin-inline: rem(-20px);
+    padding-inline: rem(20px);
+    padding-top: rem(28px);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: rem(22px);
+    right: rem(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(36px);
+    height: rem(36px);
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+
+    svg {
+      width: rem(22px);
+      height: rem(22px);
+    }
+  }
+
+  .popup-title {
+    margin: 0 rem(48px) rem(18px) 0;
+    font-size: rem(24px);
+    font-weight: 700;
+    line-height: 1.35;
+  }
+}
+
+@keyframes project-popup-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

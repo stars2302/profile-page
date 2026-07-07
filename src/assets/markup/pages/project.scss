@@ -30,63 +30,8 @@
   }
 }
 
+// 프로젝트 팝업
 .project-popup {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  .popup-dim {
-    position: absolute;
-    inset: 0;
-    border: 0;
-    background: rgba(0, 0, 0, 0.58);
-    cursor: pointer;
-  }
-
-  .popup-panel {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-height: calc(100dvh - #{rem(42px)});
-    padding: rem(28px) rem(20px) rem(32px);
-    overflow-y: auto;
-    border-radius: rem(28px) rem(28px) 0 0;
-    background: linear-gradient(to bottom, #25314A, #121a2c);
-    color: #fff;
-    animation: project-popup-up 0.34s ease both;
-  }
-
-  .popup-close {
-    position: absolute;
-    top: rem(18px);
-    right: rem(18px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: rem(36px);
-    height: rem(36px);
-    border: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    cursor: pointer;
-
-    svg {
-      width: rem(22px);
-      height: rem(22px);
-    }
-  }
-
-  .popup-title {
-    margin: 0 rem(48px) rem(18px) 0;
-    font-size: rem(24px);
-    font-weight: 700;
-    line-height: 1.35;
-  }
-
   .project-swiper {
     overflow: hidden;
     margin-inline: rem(-2px);
@@ -134,7 +79,7 @@
 
   .project-meta {
     display: grid;
-    gap: rem(12px);
+    gap: rem(16px);
     margin: rem(22px) 0 0;
 
     div {
@@ -143,7 +88,7 @@
     }
 
     dt {
-      color: rgba(255, 255, 255, 0.58);
+      color: #77839E;
       font-size: rem(12px);
       font-weight: 600;
     }
@@ -229,15 +174,5 @@
       width: rem(14px);
       height: rem(14px);
     }
-  }
-}
-
-@keyframes project-popup-up {
-  from {
-    transform: translateY(100%);
-  }
-
-  to {
-    transform: translateY(0);
   }
 }

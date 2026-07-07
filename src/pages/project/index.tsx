@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Icon } from "@iconify/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -46,71 +47,77 @@ function Project() {
         ))}
       </ul>
 
-      {selectedProject && (
-        <div className="project-popup" role="dialog" aria-modal="true" aria-labelledby="project-popup-title">
-          <button type="button" className="popup-dim" aria-label="팝업 닫기" onClick={closePopup} />
-          <div className="popup-panel">
-            <button type="button" className="popup-close" aria-label="닫기" onClick={closePopup}>
-              <Icon icon="mingcute:close-line" />
-            </button>
+      {selectedProject &&
+        createPortal(
+          <div className="project-popup" role="dialog" aria-modal="true" aria-labelledby="project-popup-title">
+            <button type="button" className="popup-dim" aria-label="팝업 닫기" onClick={closePopup} />
+            <div className="popup-panel">
+              <div className="popup-title-area">
+                <button type="button" className="popup-close" aria-label="닫기" onClick={closePopup}>
+                  <Icon icon="mingcute:close-line" />
+                </button>
 
-            <h2 id="project-popup-title" className="popup-title">
-              {selectedProject.name}
-            </h2>
-
-            <Swiper
-              className="project-swiper"
-              modules={[Navigation, Pagination]}
-              navigation
-              pagination={{ clickable: true }}
-              spaceBetween={12}
-              slidesPerView={1}
-            >
-              {selectedProject.images.map((image, index) => (
-                <SwiperSlide key={image}>
-                  <img src={image} alt={`${selectedProject.name} 화면 ${index + 1}`} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-            <p className="popup-description">{selectedProject.description}</p>
-
-            <dl className="project-meta">
-              <div>
-                <dt>기간</dt>
-                <dd>{selectedProject.period}</dd>
+                <h2 id="project-popup-title" className="popup-title">
+                  {selectedProject.name}
+                </h2>
               </div>
-              <div>
-                <dt>역할</dt>
-                <dd>{selectedProject.role}</dd>
+
+              <Swiper
+                className="project-swiper"
+                modules={[Navigation, Pagination]}
+                navigation
+                pagination={{ clickable: true }}
+                spaceBetween={12}
+                slidesPerView={1}
+              >
+                {selectedProject.images.map((image, index) => (
+                  <SwiperSlide key={image}>
+                    <img src={image} alt={`${selectedProject.name} 화면 ${index + 1}`} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              <dl className="project-meta">
+                <div>
+                  <dt>설명</dt>
+                  <dd>{selectedProject.description}</dd>
+                </div>
+                <div>
+                  <dt>기간</dt>
+                  <dd>{selectedProject.period}</dd>
+                </div>
+                <div>
+                  <dt>역할</dt>
+                  <dd>{selectedProject.role}</dd>
+                </div>
+              </dl>
+
+              <div className="project-skills">
+                <h3>사용기술</h3>
+                <ul>
+                  {selectedProject.skills.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
               </div>
-            </dl>
 
-            <div className="project-skills">
-              <h3>사용기술</h3>
-              <ul>
-                {selectedProject.skills.map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
-              </ul>
+              <div className="project-insight">
+                <h3>인사이트 & 작업과정</h3>
+                <ul>
+                  {selectedProject.insights.map((insight) => (
+                    <li key={insight}>{insight}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
+                웹사이트 이동하기
+                <Icon icon="fa7-solid:external-link" />
+              </a>
             </div>
-
-            <div className="project-insight">
-              <h3>인사이트 & 작업과정</h3>
-              <ul>
-                {selectedProject.insights.map((insight) => (
-                  <li key={insight}>{insight}</li>
-                ))}
-              </ul>
-            </div>
-
-            <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
-              웹사이트 이동하기
-              <Icon icon="fa7-solid:external-link" />
-            </a>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
