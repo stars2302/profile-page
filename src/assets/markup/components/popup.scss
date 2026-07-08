@@ -47,7 +47,7 @@
   .popup-close {
     position: absolute;
     top: rem(22px);
-    right: rem(20px);
+    right: rem(16px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,8 +66,8 @@
 
   .popup-title {
     margin: 0 rem(48px) rem(14px) 0;
-    font-size: rem($font-size-2xl);
-    font-weight: 700;
+    font-size: rem($font-size-xl);
+    font-weight: 600;
     line-height: 1.35;
   }
 }
