@@ -32,10 +32,14 @@
 
 // 프로젝트 팝업
 .project-popup {
+  .project-swiper-area {
+    position: relative;
+    margin-inline: rem(-20px);
+  }
+
   .project-swiper {
     position: relative;
     overflow: hidden;
-    margin-inline: rem(-20px);
 
     &::before {
       content: '';
@@ -56,39 +60,40 @@
       object-fit: cover;
     }
 
-    .swiper-button-prev,
-    .swiper-button-next {
-      z-index: 12;
-      width: rem(20px);
-      height: rem(20px);
-      background: transparent;
-      color: #fff;
-      top: unset;
-      bottom: rem(12px);
-
-      &::after {
-        font-size: rem(12px);
-        font-weight: 700;
-      }
-    }
-
-    .swiper-button-prev {
-      left: unset;
-      right: rem(50px);
-    }
-
-    .swiper-button-next {
-      right: rem(14px);
-    }
-
     .swiper-pagination-bullet {
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.5);
       opacity: 1;
     }
 
     .swiper-pagination-bullet-active {
       background: #FFB829;
     }
+  }
+
+  .project-swiper-button {
+    position: absolute;
+    z-index: 12;
+    bottom: rem(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: rem(24px);
+
+    &.swiper-button-disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+  }
+
+  .project-swiper-prev {
+    right: rem(50px);
+  }
+
+  .project-swiper-next {
+    right: rem(12px);
   }
 
   .popup-description {
@@ -162,20 +167,6 @@
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;
       }
-    }
-  }
-
-  .project-insight {
-    ul {
-      display: grid;
-    }
-
-    li {
-      border-bottom: rem(1px) solid #54476A;
-      padding: rem(10px) rem(4px);
-      color: rgba(255, 255, 255, 0.88);
-      font-size: rem(14px);
-      line-height: 1.6;
     }
   }
 
