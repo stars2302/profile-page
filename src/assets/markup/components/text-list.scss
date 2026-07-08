@@ -40,4 +40,7 @@ a.text-list-item {
 .text-list-action {
   margin-right: rem(6px);
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
