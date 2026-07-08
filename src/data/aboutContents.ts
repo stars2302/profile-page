@@ -1,4 +1,4 @@
-export const data = {
+export const aboutContents = {
   // name: 스킬 이름
   // icon: Iconify 기준 아이콘명
   // hidden: true이면 이름 (name 값) 숨김

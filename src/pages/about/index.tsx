@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { data } from "@/pages/about/data";
+import { aboutContents } from "@/data/aboutContents";
 
 function About() {
   return (
@@ -29,7 +29,7 @@ function About() {
 
       <section className="skill-area">
         <h2 className="about-title">제가 다룰 수 있는 스킬은,</h2>
-        {data.skills.map((skill) => (
+        {aboutContents.skills.map((skill) => (
           <div key={skill.name} className="skill">
             <Icon icon={skill.icon} />
             {/* <span className={`skill-name ${skill.hidden ? "hidden" : ""}`}>
@@ -42,7 +42,7 @@ function About() {
       <section className="more-area">
         <h2 className="about-title">좀 더 알고 싶으시다면,</h2>
         <dl>
-          {data.interview.map((item) => (
+          {aboutContents.interview.map((item) => (
             <>
               <dt>
                 {item.id}. {item.question}
