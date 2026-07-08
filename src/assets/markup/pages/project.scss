@@ -31,7 +31,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: $breakpoint-tablet) {
   .project-cont {
     padding: rem(20px) 0 rem(80px);
 
@@ -67,7 +67,7 @@
     img {
       display: block;
       width: 100%;
-      aspect-ratio: 310 / 180;
+      aspect-ratio: 1920 / 1040;
       object-fit: cover;
     }
 
@@ -208,7 +208,91 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-tablet-max) {
+  .project-popup {
+    .popup-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(rem(210px), 0.85fr);
+      grid-template-areas:
+        'media meta'
+        'skills link'
+        'insight insight';
+      grid-template-rows: max-content max-content max-content;
+      gap: rem(24px) rem(20px);
+      align-items: start;
+      align-content: start;
+    }
+
+    .project-swiper-area {
+      grid-area: media;
+      flex: 0 0 auto;
+      width: 100%;
+      aspect-ratio: 310 / 180;
+      margin: 0;
+      overflow: hidden;
+      border-radius: rem(16px);
+      background: rgba($color-black, 0.22);
+    }
+
+    .project-swiper,
+    .project-swiper .swiper-wrapper,
+    .project-swiper .swiper-slide {
+      width: 100%;
+      height: 100%;
+    }
+
+    .project-swiper img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      object-fit: cover;
+    }
+
+    .project-summary {
+      display: contents;
+    }
+
+    .project-meta {
+      grid-area: meta;
+      margin-top: 0;
+    }
+
+    .project-skills {
+      grid-area: skills;
+      margin-top: 0;
+    }
+
+    .project-link {
+      grid-area: link;
+      align-self: end;
+      margin-top: 0;
+    }
+
+    .project-insight {
+      grid-area: insight;
+      min-width: 0;
+      margin-top: 0;
+    }
+
+    .project-swiper-button {
+      bottom: rem(14px);
+      width: rem(36px);
+      height: rem(36px);
+      border-radius: 50%;
+      background: rgba($color-black, 0.45);
+    }
+
+    .project-swiper-prev {
+      right: rem(58px);
+    }
+
+    .project-swiper-next {
+      right: rem(14px);
+    }
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
   .project-popup {
     .popup-body {
       display: grid;
