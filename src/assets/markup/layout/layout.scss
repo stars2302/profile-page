@@ -54,7 +54,7 @@
   z-index: 1;
 }
 
-// tablet + : SNS-style fixed sidebar / content layout
+// 태블릿 이상: SNS 형태의 고정 사이드바와 콘텐츠 레이아웃
 @media (min-width: 768px) {
   .page-wrap {
     --sidebar-width: #{rem(240px)};
@@ -66,7 +66,7 @@
     margin-left: calc(var(--sidebar-width) + rem(20px));
     padding: rem(36px) clamp(#{rem(28px)}, 5vw, #{rem(72px)});
 
-    // Each route is kept in a readable feed width on the right side.
+    // 각 페이지 콘텐츠를 오른쪽의 읽기 좋은 너비로 제한
     > :not(.profile-area) {
       width: min(100%, rem(1440px));
       margin-inline: auto;
@@ -87,5 +87,16 @@
 @media (min-width: 1200px) {
   .page-wrap {
     --sidebar-width: #{rem(280px)};
+  }
+}
+
+@media (min-width: 1920px) {
+  .page-wrap {
+    --layout-width: #{rem(1720px)};
+  }
+
+  .contents-wrap {
+    width: calc(var(--layout-width) - var(--sidebar-width));
+    margin-left: calc((100vw - var(--layout-width)) / 2 + var(--sidebar-width));
   }
 }

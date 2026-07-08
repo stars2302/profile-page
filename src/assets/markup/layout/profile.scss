@@ -1,7 +1,7 @@
 @use '../base/util.scss' as *;
 @use '../base/variables.scss' as *;
 
-// profile image
+// 프로필 이미지
 .profile-img-wrap {
   width: rem(200px);
   height: rem(200px);
@@ -22,7 +22,7 @@
   }
 }
 
-// profile area
+// 프로필 영역
 .profile-area {
   padding-top: rem(210px);
   position: relative;
@@ -30,7 +30,7 @@
   padding-bottom: rem(90px);
   pointer-events: none;
 
-  // bg
+  // 배경
   .bg-top-area {
     position: absolute;
     top: rem(100px);
@@ -40,7 +40,7 @@
     justify-content: space-between;
 
     >div {
-      // 200px - profile img / 8px - gutter*2 / 20px - bg before*2
+      // 전체 너비 - 프로필 이미지 200px - 여백 8px*2 - 가상 요소 20px*2
       width: calc((100% - #{rem(200px)} - #{rem(16px)} - #{rem(40px)}) / 2);
       height: rem(110px);
       background: linear-gradient(to bottom, $color-surface-light, $color-surface);
@@ -96,14 +96,14 @@
     }
   }
 
-  //profile bottom area
+  // 프로필 하단 영역
   .profile-contents {
     background: linear-gradient(to bottom, $color-surface, $color-surface-dark);
     border-bottom-left-radius: rem(35px);
     border-bottom-right-radius: rem(35px);
   }
 
-  //contents
+  // 프로필 콘텐츠
   .profile-info {
     padding: rem(14px) 0 rem(46px);
     text-align: center;
@@ -127,7 +127,7 @@
   }
 }
 
-// nav
+// 내비게이션
 .profile-nav {
   position: relative;
   padding-bottom: rem(18px);
@@ -159,7 +159,6 @@
     max-width: 0;
     margin-left: 0;
     opacity: 0;
-    // overflow: hidden;
     transform: translateX(rem(-8px));
     color: $color-white;
     font-weight: 600;
@@ -230,30 +229,6 @@
     }
   }
 
-  .nav-label {
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: rem(-5px);
-      left: 0;
-      height: rem(2px);
-      border-radius: rem(2px);
-      background-color: $color-yello;
-      transform: scaleX(0);
-      transform-origin: right center;
-      transition: transform 0.28s ease;
-    }
-  }
-
-  a:hover .nav-label::after,
-  a:focus-visible .nav-label::after {
-    transform: scaleX(1);
-    transform-origin: left center;
-  }
-
   .icon {
     margin-left: rem(4px);
     margin-top: rem(-3px);
@@ -274,18 +249,18 @@
     box-shadow: rem(12px) 0 rem(40px) rgba($color-black, 0.12);
     pointer-events: auto;
 
-    // The curved mobile profile card is not used in the sidebar layout.
+    // 사이드바에서는 모바일용 곡선 프로필 카드를 사용하지 않음
     .bg-top-area {
       display: none;
     }
 
     >.profile-img-wrap {
-      top: auto;
-      bottom: rem(24px);
-      left: rem(22px);
-      width: rem(54px);
-      height: rem(54px);
-      transform: none;
+      top: rem(24px);
+      bottom: auto;
+      left: 50%;
+      width: rem(120px);
+      height: rem(120px);
+      transform: translateX(-50%);
       border-radius: rem(14px);
 
       img {
@@ -303,11 +278,12 @@
 
     .profile-info {
       position: absolute;
+      top: rem(164px);
       right: rem(14px);
-      bottom: rem(32px);
-      left: rem(90px);
+      bottom: auto;
+      left: rem(14px);
       padding: 0;
-      text-align: left;
+      text-align: center;
 
       .profile-name {
         overflow: hidden;
@@ -331,13 +307,13 @@
   .profile-nav,
   .profile-nav.is-fixed {
     position: absolute;
-    inset: rem(18px) 0 auto;
+    inset: rem(224px) 0 auto;
     display: block;
     padding: 0;
     border-radius: 0;
     background: transparent;
 
-    // On tablet/desktop the original nav remains the sidebar nav.
+    // 태블릿과 데스크톱에서는 기존 내비게이션을 사이드바로 유지
     &.is-placeholder {
       visibility: visible;
     }
@@ -358,10 +334,12 @@
     li {
       position: relative;
       font-size: rem($font-size-base);
-      // border-radius: rem(12px);
       transition: background-color 0.2s ease;
       padding-inline: rem(14px);
 
+      &:hover {
+        background: rgba($color-white, 0.08);
+      }
 
       &.active {
         background: rgba($color-white, 0.1);
@@ -371,8 +349,6 @@
         content: '';
         position: absolute;
         top: 50%;
-        // top: 0;
-        // bottom: 0;
         left: 0;
         width: rem(3px);
         height: rem(26px);
@@ -380,20 +356,6 @@
         background: $color-yello;
         transform: translateY(-50%);
       }
-
-      // &.active::before {
-      //   content: '';
-      //   position: absolute;
-      //   top: 50%;
-      //   // top: 0;
-      //   // bottom: 0;
-      //   left: rem(8px);
-      //   width: rem(8px);
-      //   height: rem(8px);
-      //   border-radius: 50%;
-      //   background: $color-yello;
-      //   transform: translateY(-50%);
-      // }
     }
 
     a {
@@ -406,10 +368,17 @@
         display: none;
       }
     }
+
   }
 
-  // The mobile scroll-created portal is unnecessary when the sidebar is fixed.
+  // 사이드바가 고정되는 구간에서는 모바일용 고정 내비게이션을 숨김
   body>.profile-nav.is-fixed {
     display: none;
+  }
+}
+
+@media (min-width: 1920px) {
+  .profile-area {
+    left: calc((100vw - var(--layout-width)) / 2);
   }
 }

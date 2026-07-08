@@ -26,7 +26,7 @@ function Nav() {
   const [showFixedProfile, setShowFixedProfile] = useState(false);
   const [barStyle, setBarStyle] = useState({ left: 0, width: 0 });
 
-  // 현재 경로로 active index 찾기
+  // 현재 경로에 해당하는 활성 메뉴 순서 찾기
   const getActiveIndexFromPath = (pathname: string) => {
     const index = navItems.findIndex((item) => item.path === pathname);
     return index !== -1 ? index : 0;
@@ -97,7 +97,7 @@ function Nav() {
     scrollCheckFrameRef.current = requestAnimationFrame(navigateAtTop);
   };
 
-  // 경로 변경 시 active index 업데이트
+  // 경로가 변경되면 활성 메뉴 순서 업데이트
   useEffect(() => {
     const newIndex = getActiveIndexFromPath(location.pathname);
     setActiveIndex(newIndex);
