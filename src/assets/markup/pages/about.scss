@@ -1,4 +1,5 @@
 @use '../base/util.scss' as *;
+@use '../base/variables.scss' as *;
 
 @keyframes skill-float {
 
@@ -90,12 +91,12 @@
 }
 
 .about-cont {
-  --about-text: #fff;
-  --about-muted: rgba(255, 255, 255, 0.72);
-  --about-copy: rgba(255, 255, 255, 0.82);
-  --about-answer-bg: #1e293b;
-  --about-question-from: #8b5cf6;
-  --about-question-to: #6366f1;
+  --about-text: #{$color-white};
+  --about-muted: #{rgba($color-white, $opacity-high)};
+  --about-copy: #{rgba($color-white, $opacity-strong)};
+  --about-answer-bg: #{$color-surface};
+  --about-question-from: #{$color-primary};
+  --about-question-to: #{$color-indigo};
 
   position: relative;
   // max-width: rem(344px);
@@ -182,7 +183,7 @@
       display: block;
       width: rem(42px);
       height: rem(42px);
-      filter: drop-shadow(0 rem(10px) rem(18px) rgba(0, 0, 0, 0.28));
+      filter: drop-shadow(0 rem(10px) rem(18px) rgba($color-black, $opacity-low));
     }
 
     &:nth-of-type(1) {
@@ -250,7 +251,7 @@
       svg {
         width: rem(68px);
         height: rem(68px);
-        color: #fff;
+        color: $color-white;
       }
     }
 
@@ -329,7 +330,7 @@
       padding: rem(7px) rem(12px) rem(7px) rem(14px);
       border-radius: rem(16px) rem(16px) rem(16px) 0;
       background: linear-gradient(103deg, var(--about-question-from) 14.75%, var(--about-question-to) 85.25%);
-      color: #fff;
+      color: $color-white;
       font-size: rem(12px);
       line-height: 1.5;
       font-weight: 500;
@@ -346,12 +347,12 @@
       padding: rem(10px) rem(12px);
       border-radius: rem(16px) rem(16px) 0 rem(16px);
       background: var(--about-answer-bg);
-      color: rgba(255, 255, 255, 0.92);
+      color: rgba($color-white, $opacity-strong);
       font-size: rem(12px);
       line-height: 1.66;
       letter-spacing: -0.02em;
       word-break: keep-all;
-      box-shadow: 0 rem(12px) rem(26px) rgba(0, 0, 0, 0.18);
+      box-shadow: 0 rem(12px) rem(26px) rgba($color-black, $opacity-subtle);
     }
   }
 

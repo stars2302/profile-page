@@ -1,4 +1,5 @@
 @use '../base/util.scss' as *;
+@use '../base/variables.scss' as *;
 
 .project-cont {
   padding: rem(30px) rem(10px) rem(60px);
@@ -50,7 +51,7 @@
       background: linear-gradient(180deg,
           transparent 0%,
           transparent 76%,
-          rgba(0, 0, 0, 0.48) 100%);
+          rgba($color-black, $opacity-medium) 100%);
     }
 
     img {
@@ -61,12 +62,12 @@
     }
 
     .swiper-pagination-bullet {
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba($color-white, $opacity-medium);
       opacity: 1;
     }
 
     .swiper-pagination-bullet-active {
-      background: #FFB829;
+      background: $color-yello;
     }
   }
 
@@ -78,7 +79,7 @@
     align-items: center;
     justify-content: center;
     border: 0;
-    color: #fff;
+    color: $color-white;
     cursor: pointer;
     font-size: rem(24px);
 
@@ -98,7 +99,7 @@
 
   .popup-description {
     margin: rem(22px) 0 0;
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba($color-white, $opacity-strong);
     font-size: rem(14px);
     line-height: 1.7;
     word-break: keep-all;
@@ -115,13 +116,13 @@
     }
 
     dt {
-      color: #77839E;
+      color: $color-text-muted;
       font-size: rem(12px);
       font-weight: 600;
     }
 
     dd {
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba($color-white, $opacity-strong);
       font-size: rem(14px);
       line-height: 1.5;
     }
@@ -133,7 +134,7 @@
 
     h3 {
       margin: 0 0 rem(12px);
-      color: #77839E;
+      color: $color-text-muted;
       font-size: rem(12px);
       font-weight: 600;
     }
@@ -150,7 +151,7 @@
       position: relative;
       padding: rem(5px) rem(10px) rem(4px);
       border-radius: rem(999px);
-      color: #fff;
+      color: $color-white;
       font-size: rem(12px);
       // font-weight: 600;
 
@@ -160,11 +161,11 @@
         inset: 0;
         padding: rem(1px);
         border-radius: inherit;
-        background: linear-gradient(-20deg, #713ABC, #d3abec);
+        background: linear-gradient(-20deg, $color-primary-dark, $color-primary-light);
         pointer-events: none;
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient($color-white 0 0) content-box, linear-gradient($color-white 0 0);
         -webkit-mask-composite: xor;
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient($color-white 0 0) content-box, linear-gradient($color-white 0 0);
         mask-composite: exclude;
       }
     }
@@ -179,8 +180,8 @@
     margin-top: rem(28px);
     padding: rem(16px) rem(16px);
     border-radius: rem(12px);
-    background: linear-gradient(103deg, #8B5CF6 14.75%, #6366F1 85.25%);
-    color: #fff;
+    background: linear-gradient(103deg, $color-primary 14.75%, $color-indigo 85.25%);
+    color: $color-white;
     font-size: rem(15px);
     font-weight: 500;
     text-decoration: none;

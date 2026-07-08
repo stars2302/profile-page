@@ -1,4 +1,5 @@
 @use '../base/util.scss' as *;
+@use '../base/variables.scss' as *;
 
 .text-list {
   display: grid;
@@ -10,8 +11,8 @@
   justify-content: space-between;
   gap: rem(20px);
   padding: rem(10px) rem(4px);
-  border-bottom: rem(1px) solid #54476A;
-  color: rgba(255, 255, 255, 0.88);
+  border-bottom: rem(1px) solid $color-border;
+  color: rgba($color-white, $opacity-strong);
   font-size: rem(14px);
   line-height: 1.6;
 

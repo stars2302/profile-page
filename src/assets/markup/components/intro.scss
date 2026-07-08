@@ -10,7 +10,7 @@
   place-items: center;
   padding: clamp(24px, 5vw, 64px);
   color: $color-white;
-  background: $color-intro-bg;
+  background: $color-page-bg;
   transform: translateY(0);
   transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
 
@@ -80,7 +80,7 @@
 
   small {
     margin: 0.08em 0 0 0.16em;
-    color: $color-primary;
+    color: $color-yello;
     font-size: clamp(rem(20px), 4vw, rem(44px));
   }
 }
@@ -96,7 +96,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: $color-primary;
+    background: $color-yello;
     transform-origin: left;
     transition: transform 0.08s linear;
   }
@@ -116,7 +116,7 @@
   transition: opacity 0.45s ease 0.1s, transform 0.55s ease 0.1s;
 
   span {
-    color: $color-primary;
+    color: $color-yello;
     font-size: rem(16px);
     animation: intro-arrow 0.8s ease-in-out infinite alternate;
   }

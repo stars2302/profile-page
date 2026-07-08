@@ -1,10 +1,11 @@
 @use '../base/util.scss' as *;
+@use '../base/variables.scss' as *;
 
 // profile image
 .profile-img-wrap {
   width: rem(200px);
   height: rem(200px);
-  background-color: #FFB829;
+  background-color: $color-yello;
   position: absolute;
   left: 50%;
   top: rem(2px);
@@ -42,7 +43,7 @@
       // 200px - profile img / 8px - gutter*2 / 20px - bg before*2
       width: calc((100% - #{rem(200px)} - #{rem(16px)} - #{rem(40px)}) / 2);
       height: rem(110px);
-      background: linear-gradient(to bottom, #2F3D59, #25314A);
+      background: linear-gradient(to bottom, $color-surface-light, $color-surface);
       position: relative;
 
       &::before {
@@ -52,7 +53,7 @@
         display: block;
         height: 100%;
         width: rem(20px);
-        background: linear-gradient(to bottom, #2F3D59, #25314A);
+        background: linear-gradient(to bottom, $color-surface-light, $color-surface);
       }
 
       &::after {
@@ -62,8 +63,7 @@
         display: block;
         height: rem(50px);
         width: rem(50px);
-        // background: linear-gradient(to bottom, #2F3D59,#293651);
-        background: linear-gradient(to bottom, #293651, #25314A);
+        background: linear-gradient(to bottom, $color-surface-light, $color-surface);
       }
     }
 
@@ -98,7 +98,7 @@
 
   //profile bottom area
   .profile-contents {
-    background: linear-gradient(to bottom, #25314A, #162036);
+    background: linear-gradient(to bottom, $color-surface, $color-surface-dark);
     border-bottom-left-radius: rem(35px);
     border-bottom-right-radius: rem(35px);
   }
@@ -116,7 +116,7 @@
 
     .profile-email {
       font-size: rem(14px);
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba($color-white, $opacity-high);
       text-decoration: none;
 
       &:hover {
@@ -147,7 +147,7 @@
     left: rem(20px);
     right: rem(20px);
     z-index: 10;
-    background: linear-gradient(#1c263e, #162036);
+    background: linear-gradient($color-surface, $color-surface-dark);
     border-radius: 0 0 rem(35px) rem(35px);
   }
 
@@ -161,7 +161,7 @@
     opacity: 0;
     // overflow: hidden;
     transform: translateX(rem(-8px));
-    color: #fff;
+    color: $color-white;
     font-weight: 600;
     white-space: nowrap;
     transition: max-width 0.3s ease, margin-left 0.3s ease, opacity 0.2s ease, transform 0.3s ease, gap 0.3s ease;
@@ -209,7 +209,7 @@
     width: rem(20px);
     height: rem(3px);
     border-radius: rem(10px);
-    background-color: #FFB829;
+    background-color: $color-yello;
     position: absolute;
     bottom: rem(14px);
     left: 0;
@@ -218,7 +218,7 @@
 
   a {
     text-decoration: none;
-    color: #fff;
+    color: $color-white;
   }
 
   .icon {

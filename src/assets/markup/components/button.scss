@@ -1,9 +1,10 @@
 @use '../base/util.scss' as *;
+@use '../base/variables.scss' as *;
 
 button {
   background-color: transparent;
   border: none;
   padding: rem(2px) rem(6px);
-  color: #fff;
+  color: $color-white;
   cursor: pointer;
 }

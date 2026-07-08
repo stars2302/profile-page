@@ -1,12 +1,13 @@
 @use '../base/util.scss' as *;
+@use '../base/variables.scss' as *;
 
 .page-wrap {
   width: 100%;
   height: 100dvh;
   overflow-y: auto;
   overflow-x: hidden;
-  background: linear-gradient(to bottom, #142131, #000113);
-  color: #fff;
+  background: linear-gradient(to bottom, $color-page-bg-light, $color-page-bg);
+  color: $color-white;
   position: relative;
   padding-inline: rem(20px);
   overscroll-behavior: none;
@@ -25,7 +26,7 @@
   left: -42%;
   width: 110%;
   height: 68%;
-  background: radial-gradient(ellipse, #F37261 0%, transparent 60%);
+  background: radial-gradient(ellipse, $color-coral 0%, transparent 60%);
   border-radius: 50%;
   filter: blur(rem(80px));
   opacity: 0.8;
@@ -41,7 +42,7 @@
   transform: translateX(-50%);
   width: 120%;
   height: 34%;
-  background: #842CF2;
+  background: $color-purple;
   border-radius: 50%;
   filter: blur(rem(75px));
   opacity: 0.80;
