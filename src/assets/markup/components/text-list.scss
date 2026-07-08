@@ -13,11 +13,11 @@
   padding: rem(10px) rem(4px);
   border-bottom: rem(1px) solid $color-border;
   color: rgba($color-white, $opacity-strong);
-  font-size: rem(14px);
+  font-size: rem($font-size-sm);
   line-height: 1.6;
 
   .icon {
-    font-size: rem(18px);
+    font-size: rem($font-size-lg);
   }
 
   &:hover .text-list-action {

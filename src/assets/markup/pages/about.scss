@@ -117,7 +117,7 @@
   .about-title {
     margin: 0 0 rem(26px);
     color: var(--about-text);
-    font-size: rem(20px);
+    font-size: rem($font-size-xl);
     line-height: 1.3;
     font-weight: 700;
     letter-spacing: -0.03em;
@@ -135,7 +135,7 @@
     // max-width: rem(304px);
     margin: 0;
     color: var(--about-copy);
-    font-size: rem(14px);
+    font-size: rem($font-size-base);
     line-height: 1.7;
     letter-spacing: -0.025em;
     word-break: keep-all;
@@ -297,7 +297,7 @@
 
   .skill-name {
     color: var(--about-text);
-    font-size: rem(14px);
+    font-size: rem($font-size-sm);
     line-height: 1.2;
     font-weight: 600;
     letter-spacing: -0.03em;
@@ -331,7 +331,7 @@
       border-radius: rem(16px) rem(16px) rem(16px) 0;
       background: linear-gradient(103deg, var(--about-question-from) 14.75%, var(--about-question-to) 85.25%);
       color: $color-white;
-      font-size: rem(12px);
+      font-size: rem($font-size-sm);
       line-height: 1.5;
       font-weight: 500;
       letter-spacing: -0.03em;
@@ -348,7 +348,7 @@
       border-radius: rem(16px) rem(16px) 0 rem(16px);
       background: var(--about-answer-bg);
       color: rgba($color-white, $opacity-strong);
-      font-size: rem(12px);
+      font-size: rem($font-size-base);
       line-height: 1.66;
       letter-spacing: -0.02em;
       word-break: keep-all;
@@ -428,13 +428,13 @@
     }
 
     .about-title {
-      font-size: rem(26px);
+      font-size: rem($font-size-3xl);
       margin-bottom: rem(30px);
     }
 
     .about-copy {
       max-width: rem(700px);
-      font-size: rem(15px);
+      font-size: rem($font-size-base);
       line-height: 1.9;
 
       &+.about-copy {
@@ -479,7 +479,7 @@
     }
 
     .skill-name {
-      font-size: rem(16px);
+      font-size: rem($font-size-base);
     }
 
     .more-area {
@@ -488,7 +488,7 @@
       }
 
       dt {
-        font-size: rem(14px);
+        font-size: rem($font-size-sm);
         min-height: rem(38px);
         padding: rem(9px) rem(16px);
       }
@@ -496,7 +496,7 @@
       dd {
         width: min(100%, rem(640px));
         padding: rem(16px) rem(18px);
-        font-size: rem(14px);
+        font-size: rem($font-size-base);
       }
     }
   }

@@ -109,13 +109,13 @@
     text-align: center;
 
     .profile-name {
-      font-size: rem(24px);
+      font-size: rem($font-size-2xl);
       font-weight: 600;
       line-height: 1.5;
     }
 
     .profile-email {
-      font-size: rem(14px);
+      font-size: rem($font-size-sm);
       color: rgba($color-white, $opacity-high);
       text-decoration: none;
 
@@ -201,7 +201,7 @@
   }
 
   li {
-    font-size: rem(14px);
+    font-size: rem($font-size-sm);
     cursor: pointer;
   }
 
@@ -223,6 +223,6 @@
 
   .icon {
     margin-left: rem(4px);
-    font-size: rem(14px);
+    font-size: rem($font-size-sm);
   }
 }

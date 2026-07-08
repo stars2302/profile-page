@@ -81,7 +81,7 @@
     border: 0;
     color: $color-white;
     cursor: pointer;
-    font-size: rem(24px);
+    font-size: rem($font-size-2xl);
 
     &.swiper-button-disabled {
       opacity: 0.35;
@@ -100,7 +100,7 @@
   .popup-description {
     margin: rem(22px) 0 0;
     color: rgba($color-white, $opacity-strong);
-    font-size: rem(14px);
+    font-size: rem($font-size-base);
     line-height: 1.7;
     word-break: keep-all;
   }
@@ -117,13 +117,13 @@
 
     dt {
       color: $color-text-muted;
-      font-size: rem(12px);
+      font-size: rem($font-size-xs);
       font-weight: 600;
     }
 
     dd {
       color: rgba($color-white, $opacity-strong);
-      font-size: rem(14px);
+      font-size: rem($font-size-sm);
       line-height: 1.5;
     }
   }
@@ -135,7 +135,7 @@
     h3 {
       margin: 0 0 rem(12px);
       color: $color-text-muted;
-      font-size: rem(12px);
+      font-size: rem($font-size-xs);
       font-weight: 600;
     }
   }
@@ -152,7 +152,7 @@
       padding: rem(5px) rem(10px) rem(4px);
       border-radius: rem(999px);
       color: $color-white;
-      font-size: rem(12px);
+      font-size: rem($font-size-xs);
       // font-weight: 600;
 
       &::before {
@@ -182,7 +182,7 @@
     border-radius: rem(12px);
     background: linear-gradient(103deg, $color-primary 14.75%, $color-indigo 85.25%);
     color: $color-white;
-    font-size: rem(15px);
+    font-size: rem($font-size-base);
     font-weight: 500;
     text-decoration: none;
 

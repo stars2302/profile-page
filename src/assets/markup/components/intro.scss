@@ -46,7 +46,7 @@
   display: flex;
   justify-content: space-between;
   color: rgba($color-white, $opacity-medium);
-  font-size: clamp(rem(10px), 1.2vw, rem(12px));
+  font-size: clamp(rem($font-size-2xs), 1.2vw, rem($font-size-xs));
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -60,7 +60,7 @@
 .intro-loading {
   margin-bottom: rem(10px);
   color: rgba($color-white, $opacity-high);
-  font-size: rem(12px);
+  font-size: rem($font-size-xs);
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -123,7 +123,7 @@
 
   span {
     color: $color-primary-light;
-    font-size: rem(16px);
+    font-size: rem($font-size-base);
     animation: intro-arrow 0.8s ease-in-out infinite alternate;
   }
 }
@@ -149,7 +149,7 @@
   right: clamp(24px, 5vw, 64px);
   bottom: clamp(24px, 5vw, 56px);
   color: rgba($color-white, $opacity-low);
-  font-size: rem(10px);
+  font-size: rem($font-size-2xs);
   letter-spacing: 0.14em;
 }
 
