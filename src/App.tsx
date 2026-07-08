@@ -3,10 +3,12 @@ import Layout from './layout'
 import About from './pages/about'
 import Project from './pages/project'
 import More from './pages/more'
+import Intro from './components/intro'
 
 function App() {
   return (
     <BrowserRouter>
+      <Intro />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index path="about" element={<About />} />
