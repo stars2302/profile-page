@@ -1,6 +1,6 @@
-import { type RefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { type MouseEvent, type RefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import profileImg from "@/assets/images/person.svg"; // 프로필 이미지
 
@@ -13,13 +13,14 @@ const navItems = [
 
 function Nav() {
   const location = useLocation();
+  const navigate = useNavigate();
   const profileNavRef = useRef<HTMLElement>(null);
   const fixedNavRef = useRef<HTMLElement>(null);
   const originalNavListRef = useRef<HTMLUListElement>(null);
   const fixedNavListRef = useRef<HTMLUListElement>(null);
   const scrollContainerRef = useRef<HTMLElement>(null);
   const navOffsetTopRef = useRef(0);
-  const shouldResetScrollRef = useRef(false);
+  const scrollCheckFrameRef = useRef<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [showFixedProfile, setShowFixedProfile] = useState(false);
@@ -65,19 +66,35 @@ function Nav() {
     });
   };
 
-  const resetScrollToFixedPosition = () => {
+  const handleMenuClick = (event: MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (!isFixed) return;
+
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
+    event.preventDefault();
+
+    if (scrollCheckFrameRef.current !== null) {
+      cancelAnimationFrame(scrollCheckFrameRef.current);
+    }
+
     scrollContainer.scrollTo({
-      top: navOffsetTopRef.current,
+      top: 0,
+      behavior: "smooth",
     });
-  };
 
-  const handleMenuClick = () => {
-    if (!isFixed) return;
+    const navigateAtTop = () => {
+      if (scrollContainer.scrollTop <= 24) {
+        scrollContainer.scrollTo({ top: 0 });
+        scrollCheckFrameRef.current = null;
+        navigate(path);
+        return;
+      }
 
-    shouldResetScrollRef.current = true;
+      scrollCheckFrameRef.current = requestAnimationFrame(navigateAtTop);
+    };
+
+    scrollCheckFrameRef.current = requestAnimationFrame(navigateAtTop);
   };
 
   // 경로 변경 시 active index 업데이트
@@ -85,11 +102,15 @@ function Nav() {
     const newIndex = getActiveIndexFromPath(location.pathname);
     setActiveIndex(newIndex);
 
-    if (shouldResetScrollRef.current) {
-      shouldResetScrollRef.current = false;
-      requestAnimationFrame(resetScrollToFixedPosition);
-    }
   }, [location.pathname]);
+
+  useEffect(() => {
+    return () => {
+      if (scrollCheckFrameRef.current !== null) {
+        cancelAnimationFrame(scrollCheckFrameRef.current);
+      }
+    };
+  }, []);
 
   useLayoutEffect(() => {
     syncBar(activeIndex);
@@ -161,7 +182,7 @@ function Nav() {
                 <Icon className="icon" icon="fa7-solid:external-link" />
               </a>
             ) : (
-              <Link to={item.path} onClick={handleMenuClick}>
+              <Link to={item.path} onClick={(event) => handleMenuClick(event, item.path)}>
                 {item.name}
               </Link>
             )}
