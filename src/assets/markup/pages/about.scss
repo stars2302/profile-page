@@ -422,10 +422,15 @@
   }
 
   @media (min-width: 768px) {
-    max-width: rem(760px);
-    padding-top: rem(54px);
+    // max-width: rem(760px);
+    // padding-top: rem(54px);
+    // padding-inline: clamp(#{rem(20px)}, 4vw, #{rem(52px)});
+    padding-inline: 0;
 
-    .about-intro,
+    .about-intro {
+      margin-top: rem(30px);
+    }
+
     .skill-area,
     .more-area {
       margin-top: rem(72px);
@@ -437,7 +442,8 @@
     }
 
     .about-copy {
-      max-width: rem(700px);
+      // max-width: rem(700px);
+      width: 90%;
       font-size: rem($font-size-base);
       line-height: 1.9;
 
@@ -498,7 +504,7 @@
       }
 
       dd {
-        width: min(100%, rem(640px));
+        width: min(90%, rem(1200px));
         padding: rem(16px) rem(18px);
         font-size: rem($font-size-base);
       }

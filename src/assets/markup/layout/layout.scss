@@ -53,3 +53,39 @@
   position: relative;
   z-index: 1;
 }
+
+// tablet + : SNS-style fixed sidebar / content layout
+@media (min-width: 768px) {
+  .page-wrap {
+    --sidebar-width: #{rem(240px)};
+    padding-inline: 0;
+  }
+
+  .contents-wrap {
+    min-height: 100%;
+    margin-left: calc(var(--sidebar-width) + rem(20px));
+    padding: rem(36px) clamp(#{rem(28px)}, 5vw, #{rem(72px)});
+
+    // Each route is kept in a readable feed width on the right side.
+    > :not(.profile-area) {
+      width: min(100%, rem(1440px));
+      margin-inline: auto;
+    }
+  }
+
+  .deco1 {
+    left: 6%;
+    width: 72%;
+  }
+
+  .deco2 {
+    left: 68%;
+    width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-wrap {
+    --sidebar-width: #{rem(280px)};
+  }
+}

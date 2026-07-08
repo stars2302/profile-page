@@ -230,8 +230,186 @@
     }
   }
 
+  .nav-label {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: rem(-5px);
+      left: 0;
+      height: rem(2px);
+      border-radius: rem(2px);
+      background-color: $color-yello;
+      transform: scaleX(0);
+      transform-origin: right center;
+      transition: transform 0.28s ease;
+    }
+  }
+
+  a:hover .nav-label::after,
+  a:focus-visible .nav-label::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
   .icon {
     margin-left: rem(4px);
+    margin-top: rem(-3px);
     font-size: rem($font-size-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .profile-area {
+    position: fixed;
+    z-index: 20;
+    inset: rem(20px) auto rem(20px) rem(20px);
+    width: var(--sidebar-width);
+    padding: 0;
+    transform: none;
+    border-radius: rem(16px);
+    background: linear-gradient(180deg, rgba($color-surface, 0.98), rgba($color-surface-dark, 0.98));
+    box-shadow: rem(12px) 0 rem(40px) rgba($color-black, 0.12);
+    pointer-events: auto;
+
+    // The curved mobile profile card is not used in the sidebar layout.
+    .bg-top-area {
+      display: none;
+    }
+
+    >.profile-img-wrap {
+      top: auto;
+      bottom: rem(24px);
+      left: rem(22px);
+      width: rem(54px);
+      height: rem(54px);
+      transform: none;
+      border-radius: rem(14px);
+
+      img {
+        width: 80%;
+        transform: translateY(rem(3px));
+      }
+    }
+
+    .profile-contents {
+      position: relative;
+      height: 100%;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .profile-info {
+      position: absolute;
+      right: rem(14px);
+      bottom: rem(32px);
+      left: rem(90px);
+      padding: 0;
+      text-align: left;
+
+      .profile-name {
+        overflow: hidden;
+        font-size: rem($font-size-base);
+        line-height: 1.35;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .profile-email {
+        display: block;
+        overflow: hidden;
+        margin-top: rem(3px);
+        font-size: rem($font-size-xs);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .profile-nav,
+  .profile-nav.is-fixed {
+    position: absolute;
+    inset: rem(18px) 0 auto;
+    display: block;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+
+    // On tablet/desktop the original nav remains the sidebar nav.
+    &.is-placeholder {
+      visibility: visible;
+    }
+
+    .nav-profile,
+    .bar {
+      display: none;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: rem(8px);
+
+    }
+
+    li {
+      position: relative;
+      font-size: rem($font-size-base);
+      // border-radius: rem(12px);
+      transition: background-color 0.2s ease;
+      padding-inline: rem(14px);
+
+
+      &.active {
+        background: rgba($color-white, 0.1);
+      }
+
+      &.active::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        // top: 0;
+        // bottom: 0;
+        left: 0;
+        width: rem(3px);
+        height: rem(26px);
+        border-radius: 0 rem(4px) rem(4px) 0;
+        background: $color-yello;
+        transform: translateY(-50%);
+      }
+
+      // &.active::before {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   // top: 0;
+      //   // bottom: 0;
+      //   left: rem(8px);
+      //   width: rem(8px);
+      //   height: rem(8px);
+      //   border-radius: 50%;
+      //   background: $color-yello;
+      //   transform: translateY(-50%);
+      // }
+    }
+
+    a {
+      display: flex;
+      width: 100%;
+      min-height: rem(48px);
+      padding: rem(14px) rem(18px);
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  // The mobile scroll-created portal is unnecessary when the sidebar is fixed.
+  body>.profile-nav.is-fixed {
+    display: none;
   }
 }

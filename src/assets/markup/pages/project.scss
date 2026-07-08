@@ -31,6 +31,16 @@
   }
 }
 
+@media (min-width: 768px) {
+  .project-cont {
+    padding: rem(20px) 0 rem(80px);
+
+    .project-list {
+      gap: rem(22px);
+    }
+  }
+}
+
 // 프로젝트 팝업
 .project-popup {
   .project-swiper-area {

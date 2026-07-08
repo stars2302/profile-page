@@ -178,12 +178,12 @@ function Nav() {
           <li key={item.name} className={activeIndex === index ? "active" : ""}>
             {item.external ? (
               <a href={item.path} target="_blank" rel="noopener noreferrer">
-                {item.name}
+                <span className="nav-label">{item.name}</span>
                 <Icon className="icon" icon="fa7-solid:external-link" />
               </a>
             ) : (
               <Link to={item.path} onClick={(event) => handleMenuClick(event, item.path)}>
-                {item.name}
+                <span className="nav-label">{item.name}</span>
               </Link>
             )}
           </li>

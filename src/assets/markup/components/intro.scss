@@ -73,7 +73,7 @@
   line-height: 0.82;
 
   span {
-    font-size: clamp(rem(88px), 19vw, rem(220px));
+    font-size: clamp(rem(88px), 19vw, rem(150px));
     font-weight: 300;
     letter-spacing: -0.085em;
   }
@@ -87,7 +87,7 @@
 
 .intro-progress {
   width: 85%;
-  height: rem(5px);
+  height: rem(8px);
   border-radius: rem(5px);
   margin-top: clamp(rem(30px), 5vw, rem(54px));
   margin-inline: auto;
