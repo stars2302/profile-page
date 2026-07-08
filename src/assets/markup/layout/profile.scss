@@ -217,8 +217,17 @@
   }
 
   a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
     color: $color-white;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: rem(-12px) rem(-10px);
+    }
   }
 
   .icon {
