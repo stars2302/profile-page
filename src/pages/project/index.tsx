@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Icon } from "@iconify/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -23,6 +23,24 @@ function Project() {
   const closePopup = () => {
     setSelectedProject(null);
   };
+
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const pageWrap = document.querySelector<HTMLElement>(".page-wrap");
+    const previousOverflow = pageWrap?.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closePopup();
+    };
+
+    if (pageWrap) pageWrap.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      if (pageWrap) pageWrap.style.overflow = previousOverflow ?? "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedProject]);
 
   return (
     <div className="project-cont">
@@ -53,7 +71,8 @@ function Project() {
                 </h2>
               </div>
 
-              <div className="project-swiper-area">
+              <div className="popup-body">
+                <div className="project-swiper-area">
                 <Swiper
                   className="project-swiper"
                   modules={[Navigation, Pagination]}
@@ -86,9 +105,10 @@ function Project() {
                 >
                   <Icon icon="icon-park-outline:right" />
                 </button>
-              </div>
+                </div>
 
-              <dl className="project-meta">
+                <div className="project-summary">
+                  <dl className="project-meta">
                 <div>
                   <dt>설명</dt>
                   <dd>{selectedProject.description}</dd>
@@ -101,19 +121,24 @@ function Project() {
                   <dt>역할</dt>
                   <dd>{selectedProject.role}</dd>
                 </div>
-              </dl>
+                  </dl>
 
-              <div className="project-skills">
-                <h3>사용기술</h3>
-                <ul>
-                  {selectedProject.skills.map((skill) => (
-                    <li key={skill}>{skill}</li>
-                  ))}
-                </ul>
-              </div>
+                  <div className="project-skills">
+                    <h3>사용기술</h3>
+                    <ul>
+                      {selectedProject.skills.map((skill) => (
+                        <li key={skill}>{skill}</li>
+                      ))}
+                    </ul>
+                  </div>
 
-              {selectedMoreContents.length > 0 && (
-                <div className="project-insight">
+                  <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
+                    웹 페이지로 이동하기
+                  </a>
+                </div>
+
+                {selectedMoreContents.length > 0 && (
+                  <div className="project-insight">
                   <h3>인사이트 & 작업과정</h3>
                   <ul className="text-list">
                     {selectedMoreContents.map(({ id, title, url }) => (
@@ -137,12 +162,9 @@ function Project() {
                       </li>
                     ))}
                   </ul>
-                </div>
-              )}
-
-              <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
-                웹 페이지로 이동하기
-              </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>,
           document.body
