@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import { aboutContents } from "@/data/aboutContents";
+import { Fragment } from "react";
 
 function About() {
   return (
@@ -43,12 +44,12 @@ function About() {
         <h2 className="about-title">좀 더 알고 싶으시다면,</h2>
         <dl>
           {aboutContents.interview.map((item) => (
-            <>
+            <Fragment key={item.id}>
               <dt>
                 {item.id}. {item.question}
               </dt>
               <dd>{item.answer}</dd>
-            </>
+            </Fragment>
           ))}
         </dl>
       </section>
