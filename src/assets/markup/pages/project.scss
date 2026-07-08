@@ -72,8 +72,12 @@
     }
 
     .swiper-pagination-bullet {
+      width: rem(8px);
+      height: rem(8px);
+      margin: 0 rem(4px);
       background: rgba($color-white, $opacity-medium);
       opacity: 1;
+
     }
 
     .swiper-pagination-bullet-active {
@@ -262,14 +266,6 @@
     .project-link {
       max-width: none;
       margin-top: auto;
-    }
-
-    .project-swiper-button {
-      bottom: rem(14px);
-      width: rem(36px);
-      height: rem(36px);
-      border-radius: 50%;
-      background: rgba($color-black, 0.45);
     }
 
     .project-swiper-prev {
