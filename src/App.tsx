@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Navigate, Routes, Route } from 'react-router-dom'
 import Layout from './layout'
 import About from './pages/about'
 import Project from './pages/project'
@@ -7,16 +7,17 @@ import Intro from './components/intro'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Intro />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index path="about" element={<About />} />
+          <Route index element={<Navigate to="about" replace />} />
+          <Route path="about" element={<About />} />
           <Route path="project" element={<Project />} />
           <Route path="more" element={<More />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
