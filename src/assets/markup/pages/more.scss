@@ -1,10 +1,11 @@
 @use '../base/util.scss' as *;
+@use '../base/variables.scss' as *;
 
 .more-cont {
   padding: rem(20px) rem(10px) rem(60px);
 }
 
-@media (min-width: 768px) {
+@media (min-width: $breakpoint-tablet) {
   .more-cont {
     padding: rem(20px) 0 rem(80px);
   }

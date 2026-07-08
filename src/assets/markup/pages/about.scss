@@ -421,7 +421,7 @@
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-tablet) {
     // max-width: rem(760px);
     // padding-top: rem(54px);
     // padding-inline: clamp(#{rem(20px)}, 4vw, #{rem(52px)});

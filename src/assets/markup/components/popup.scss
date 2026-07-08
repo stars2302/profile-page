@@ -118,7 +118,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: $breakpoint-tablet) {
   .project-popup {
     align-items: center;
     padding: rem(32px);
@@ -179,5 +179,19 @@
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-tablet-max) {
+  .project-popup {
+    padding: rem(20px);
+
+    .popup-panel {
+      max-height: calc(100dvh - #{rem(40px)});
+    }
+
+    .popup-body {
+      padding: rem(8px) rem(20px) rem(24px);
+    }
   }
 }

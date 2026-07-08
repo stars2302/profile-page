@@ -55,7 +55,7 @@
 }
 
 // 태블릿 이상: SNS 형태의 고정 사이드바와 콘텐츠 레이아웃
-@media (min-width: 768px) {
+@media (min-width: $breakpoint-tablet) {
   .page-wrap {
     --sidebar-width: #{rem(240px)};
     padding-inline: 0;
@@ -84,13 +84,13 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: $breakpoint-wide) {
   .page-wrap {
     --sidebar-width: #{rem(280px)};
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: $breakpoint-full-hd) {
   .page-wrap {
     --layout-width: #{rem(1720px)};
   }

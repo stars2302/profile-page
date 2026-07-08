@@ -236,7 +236,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: $breakpoint-tablet) {
   .profile-area {
     position: fixed;
     z-index: 20;
@@ -377,7 +377,7 @@
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: $breakpoint-full-hd) {
   .profile-area {
     left: calc((100vw - var(--layout-width)) / 2);
   }
