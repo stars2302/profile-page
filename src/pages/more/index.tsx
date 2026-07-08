@@ -1,20 +1,23 @@
 import { Icon } from "@iconify/react";
+import { moreContents } from "@/data/moreContents";
 
 function More() {
   return (
     <div className="more-cont">
-      <ul>
-        {[...Array(20)].map((_, index) => (
-          <li key={index} className="more-item">
-            <p className="more-name">
-              lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium ipsa at amet repellat blanditiis similique quis. Rem,
-              iusto consectetur dolorum ipsam officia enim repellat numquam
-              voluptates saepe aperiam voluptatem tempore.
-            </p>
-            <button className="more-btn">
-              <Icon className="icon" icon="mingcute:arrow-right-line" />
-            </button>
+      <ul className="text-list">
+        {moreContents.map(({ id, title, url }) => (
+          <li key={id}>
+            <a
+              className="text-list-item"
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="text-list-name text-list-name--ellipsis">{title}</p>
+              <span className="text-list-action" aria-hidden="true">
+                <Icon className="icon" icon="mingcute:arrow-right-line" />
+              </span>
+            </a>
           </li>
         ))}
       </ul>

@@ -1,0 +1,43 @@
+@use '../base/util.scss' as *;
+
+.text-list {
+  display: grid;
+}
+
+.text-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(20px);
+  padding: rem(10px) rem(4px);
+  border-bottom: rem(1px) solid #54476A;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: rem(14px);
+  line-height: 1.6;
+
+  .icon {
+    font-size: rem(18px);
+  }
+
+  &:hover .text-list-action {
+    transform: rotate(-45deg);
+  }
+}
+
+a.text-list-item {
+  cursor: pointer;
+}
+
+.text-list-name {
+  flex: 1;
+  min-width: 0;
+
+  &--ellipsis {
+    @include text-ellipsis;
+  }
+}
+
+.text-list-action {
+  margin-right: rem(6px);
+  transition: 0.3s;
+}

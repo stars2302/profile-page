@@ -3,33 +3,22 @@ import { createPortal } from "react-dom";
 import { Icon } from "@iconify/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { moreContents } from "@/data/moreContents";
+import { projectContents } from "@/data/projectContents";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const projects = [...Array(20)].map((_, index) => ({
-  id: index,
-  name: `Project ${String(index + 1).padStart(2, "0")}`,
-  images: [
-    `https://picsum.photos/id/${index + 10}/600/430`,
-    `https://picsum.photos/id/${index + 30}/600/430`,
-    `https://picsum.photos/id/${index + 50}/600/430`,
-  ],
-  description:
-    "사용자가 필요한 정보를 빠르게 파악할 수 있도록 화면 구조와 인터랙션을 정리한 프로젝트입니다.",
-  period: "2025.01 - 2025.03",
-  role: "퍼블리싱 100%, 반응형 UI 구현, 인터랙션 설계",
-  skills: ["React", "TypeScript", "SCSS", "Swiper"],
-  insights: [
-    "콘텐츠 우선순위에 맞춰 리스트와 상세 화면의 정보 구조를 분리했습니다.",
-    "반복되는 UI는 컴포넌트 단위로 정리해 유지보수성을 높였습니다.",
-    "모바일 환경에서 터치와 스크롤 흐름이 자연스럽도록 간격과 모션을 조정했습니다.",
-  ],
-  websiteUrl: "https://github.com/stars2302",
-}));
-
 function Project() {
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<(typeof projectContents)[number] | null>(null);
+
+  const selectedMoreContents = selectedProject
+    ? moreContents.filter(
+        (content) =>
+          content.type === "project" &&
+          content.projectId === selectedProject.id,
+      )
+    : [];
 
   const closePopup = () => {
     setSelectedProject(null);
@@ -37,8 +26,9 @@ function Project() {
 
   return (
     <div className="project-cont">
+      {/* 프로젝트 리스트 */}
       <ul className="project-list">
-        {projects.map((project) => (
+        {projectContents.map((project) => (
           <li className="project-item" key={project.id}>
             <button type="button" onClick={() => setSelectedProject(project)}>
               <img src={project.images[0]} alt={`${project.name} 썸네일`} />
@@ -47,6 +37,7 @@ function Project() {
         ))}
       </ul>
 
+      {/* 프로젝트 팝업 */}
       {selectedProject &&
         createPortal(
           <div className="project-popup" role="dialog" aria-modal="true" aria-labelledby="project-popup-title">
@@ -62,20 +53,40 @@ function Project() {
                 </h2>
               </div>
 
-              <Swiper
-                className="project-swiper"
-                modules={[Navigation, Pagination]}
-                navigation
-                pagination={{ clickable: true }}
-                spaceBetween={12}
-                slidesPerView={1}
-              >
-                {selectedProject.images.map((image, index) => (
-                  <SwiperSlide key={image}>
-                    <img src={image} alt={`${selectedProject.name} 화면 ${index + 1}`} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              <div className="project-swiper-area">
+                <Swiper
+                  className="project-swiper"
+                  modules={[Navigation, Pagination]}
+                  navigation={{
+                    prevEl: ".project-swiper-prev",
+                    nextEl: ".project-swiper-next",
+                  }}
+                  pagination={{ clickable: true }}
+                  spaceBetween={12}
+                  slidesPerView={1}
+                >
+                  {selectedProject.images.map((image, index) => (
+                    <SwiperSlide key={image}>
+                      <img src={image} alt={`${selectedProject.name} 화면 ${index + 1}`} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                <button
+                  type="button"
+                  className="project-swiper-button project-swiper-prev"
+                  aria-label="이전 이미지"
+                >
+                  <Icon icon="icon-park-outline:left" />
+                </button>
+                <button
+                  type="button"
+                  className="project-swiper-button project-swiper-next"
+                  aria-label="다음 이미지"
+                >
+                  <Icon icon="icon-park-outline:right" />
+                </button>
+              </div>
 
               <dl className="project-meta">
                 <div>
@@ -101,14 +112,33 @@ function Project() {
                 </ul>
               </div>
 
-              <div className="project-insight">
-                <h3>인사이트 & 작업과정</h3>
-                <ul>
-                  {selectedProject.insights.map((insight) => (
-                    <li key={insight}>{insight}</li>
-                  ))}
-                </ul>
-              </div>
+              {selectedMoreContents.length > 0 && (
+                <div className="project-insight">
+                  <h3>인사이트 & 작업과정</h3>
+                  <ul className="text-list">
+                    {selectedMoreContents.map(({ id, title, url }) => (
+                      <li key={id}>
+                        <a
+                          className="text-list-item"
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <p className="text-list-name text-list-name--ellipsis">
+                            {title}
+                          </p>
+                          <span className="text-list-action" aria-hidden="true">
+                            <Icon
+                              className="icon"
+                              icon="mingcute:arrow-right-line"
+                            />
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
                 웹 페이지로 이동하기

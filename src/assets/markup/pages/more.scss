@@ -3,34 +3,4 @@
 .more-cont {
   padding-block: rem(20px);
   padding-bottom: rem(60px);
-
-  .more-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: rem(1px) solid #54476A;
-    padding: rem(10px) rem(4px);
-    font-size: rem(14px);
-    gap: rem(20px);
-    cursor: pointer;
-
-    .icon {
-      font-size: rem(18px);
-    }
-
-    .more-name {
-      flex: 1;
-      min-width: 0;
-      @include text-ellipsis;
-    }
-
-    .more-btn {
-      transition: 0.3s;
-      margin-right: rem(6px);
-    }
-  }
-
-  .more-item:hover .more-btn {
-    transform: translateX(rem(6px));
-  }
 }
