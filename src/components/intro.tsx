@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const INTRO_DURATION = 2600;
-const EXIT_DURATION = 800;
+const INTRO_DURATION = 3500;
+const EXIT_DURATION = 1000;
 
 function Intro() {
   const [progress, setProgress] = useState(0);
@@ -76,9 +76,7 @@ function Intro() {
           <span style={{ transform: `scaleX(${progress / 100})` }} />
         </div>
         <div className="intro-message">
-          <p>Welcome.</p>
-          <span>↓</span>
-          <p>Portfolio</p>
+          <p>Welcome!</p>
         </div>
       </div>
 

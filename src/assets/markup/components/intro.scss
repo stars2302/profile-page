@@ -10,7 +10,7 @@
   place-items: center;
   padding: clamp(24px, 5vw, 64px);
   color: $color-white;
-  background: $color-page-bg;
+  background: linear-gradient(145deg, $color-page-bg-light 0%, $color-page-bg 72%);
   transform: translateY(0);
   transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
 
@@ -33,7 +33,7 @@
   width: min(70vw, rem(720px));
   aspect-ratio: 1;
   border-radius: 50%;
-  background: rgba($color-coral, $opacity-subtle);
+  background: radial-gradient(circle, rgba($color-primary, 0.48) 0%, rgba($color-indigo, $opacity-subtle) 48%, transparent 72%);
   filter: blur(rem(110px));
   animation: intro-breathe 2.5s ease-in-out infinite alternate;
 }
@@ -79,16 +79,18 @@
   }
 
   small {
-    margin: 0.08em 0 0 0.16em;
-    color: $color-yello;
+    margin: 0.08em 0 0 0.3em;
+    color: $color-primary-light;
     font-size: clamp(rem(20px), 4vw, rem(44px));
   }
 }
 
 .intro-progress {
-  width: 100%;
-  height: 1px;
+  width: 85%;
+  height: rem(5px);
+  border-radius: rem(5px);
   margin-top: clamp(rem(30px), 5vw, rem(54px));
+  margin-inline: auto;
   overflow: hidden;
   background: rgba($color-white, $opacity-subtle);
 
@@ -96,7 +98,8 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: $color-yello;
+    background: linear-gradient(90deg, $color-primary-dark, $color-primary, $color-primary-light);
+    box-shadow: 0 0 rem(18px) rgba($color-primary, $opacity-high);
     transform-origin: left;
     transition: transform 0.08s linear;
   }
@@ -111,18 +114,22 @@
   gap: rem(10px);
   opacity: 0;
   transform: translate(-50%, -30%);
-  font-size: clamp(rem(24px), 4vw, rem(40px));
+  font-size: clamp(rem(40px), 9.6vw, rem(112px));
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 500;
+  font-style: italic;
   letter-spacing: -0.03em;
   transition: opacity 0.45s ease 0.1s, transform 0.55s ease 0.1s;
 
   span {
-    color: $color-yello;
+    color: $color-primary-light;
     font-size: rem(16px);
     animation: intro-arrow 0.8s ease-in-out infinite alternate;
   }
 }
 
 .intro.is-complete {
+
   .intro-loading,
   .intro-percent,
   .intro-progress {
@@ -147,14 +154,20 @@
 }
 
 @keyframes intro-breathe {
-  to { transform: scale(1.16); opacity: 0.75; }
+  to {
+    transform: scale(1.16);
+    opacity: 0.75;
+  }
 }
 
 @keyframes intro-arrow {
-  to { transform: translateY(rem(5px)); }
+  to {
+    transform: translateY(rem(5px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .intro,
   .intro * {
     animation: none !important;
