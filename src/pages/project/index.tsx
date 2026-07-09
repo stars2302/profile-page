@@ -11,6 +11,9 @@ import "swiper/css/pagination";
 
 function Project() {
   const [selectedProject, setSelectedProject] = useState<(typeof projectContents)[number] | null>(null);
+  const [likedProjects, setLikedProjects] = useState<Record<number, boolean>>(() =>
+    Object.fromEntries(projectContents.map(({ id, heart }) => [id, heart])),
+  );
 
   const selectedMoreContents = selectedProject
     ? moreContents.filter(
@@ -22,6 +25,13 @@ function Project() {
 
   const closePopup = () => {
     setSelectedProject(null);
+  };
+
+  const toggleProjectHeart = (projectId: number) => {
+    setLikedProjects((prevLikedProjects) => ({
+      ...prevLikedProjects,
+      [projectId]: !prevLikedProjects[projectId],
+    }));
   };
 
   useEffect(() => {
@@ -46,13 +56,30 @@ function Project() {
     <div className="project-cont">
       {/* 프로젝트 리스트 */}
       <ul className="project-list">
-        {projectContents.map((project) => (
-          <li className="project-item" key={project.id}>
-            <button type="button" onClick={() => setSelectedProject(project)}>
-              <img src={project.images[0]} alt={`${project.name} 썸네일`} />
-            </button>
-          </li>
-        ))}
+        {projectContents.map((project) => {
+          const isLiked = likedProjects[project.id] ?? project.heart;
+
+          return (
+            <li className="project-item" key={project.id}>
+              <button
+                type="button"
+                className="project-thumb"
+                onClick={() => setSelectedProject(project)}
+              >
+                <img src={project.images[0]} alt={`${project.name} 썸네일`} />
+              </button>
+              <button
+                type="button"
+                className={`project-like${isLiked ? " is-active" : ""}`}
+                aria-label={`${project.name} 좋아요`}
+                aria-pressed={isLiked}
+                onClick={() => toggleProjectHeart(project.id)}
+              >
+                <Icon icon={isLiked ? "mdi:heart" : "mdi:heart-outline"} />
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
       {/* 프로젝트 팝업 */}

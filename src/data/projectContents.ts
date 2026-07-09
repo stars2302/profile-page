@@ -7,6 +7,7 @@ export type ProjectContent = {
   role: string;
   skills: string[];
   websiteUrl: string;
+  heart: boolean;
 };
 
 export const projectContents: ProjectContent[] = [
@@ -18,6 +19,7 @@ export const projectContents: ProjectContent[] = [
   // role: 프로젝트에서 담당한 역할
   // skills: 프로젝트에 사용한 기술 목록
   // websiteUrl: 클릭 시 이동할 프로젝트 웹 페이지 주소
+  // heart: 썸네일 hover 시 좋아요 하트 노출 여부
   {
     id: 1,
     name: "프로젝트 이름",
@@ -32,5 +34,6 @@ export const projectContents: ProjectContent[] = [
     role: "퍼블리싱 100%, 반응형 UI 구현, 인터랙션 설계",
     skills: ["React", "TypeScript", "SCSS", "Swiper"],
     websiteUrl: "https://github.com/stars2302",
+    heart: true,
   },
 ];
