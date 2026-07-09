@@ -20,8 +20,15 @@
     font-size: rem($font-size-lg);
   }
 
-  &:hover .text-list-action {
-    transform: rotate(-45deg);
+  &:hover {
+    .text-list-name {
+      color: $color-white;
+      transform: translateX(rem(4px));
+    }
+
+    .text-list-action {
+      transform: rotate(-45deg);
+    }
   }
 }
 
@@ -32,6 +39,9 @@ a.text-list-item {
 .text-list-name {
   flex: 1;
   min-width: 0;
+  transition:
+    color 0.3s,
+    transform 0.3s;
 
   &--ellipsis {
     @include text-ellipsis;
