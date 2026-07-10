@@ -10,7 +10,7 @@
   }
 
   50% {
-    translate: var(--skill-offset-x, 0px) calc(var(--skill-offset-y, 0px) - #{rem(9px)});
+    translate: var(--skill-offset-x, 0px) calc(var(--skill-offset-y, 0px) - #{rem(14px)});
     rotate: -2deg;
   }
 }
@@ -24,12 +24,12 @@
   }
 
   35% {
-    translate: var(--skill-offset-x, 0px) calc(var(--skill-offset-y, 0px) - #{rem(6px)});
+    translate: var(--skill-offset-x, 0px) calc(var(--skill-offset-y, 0px) - #{rem(10px)});
     rotate: 1.5deg;
   }
 
   70% {
-    translate: var(--skill-offset-x, 0px) calc(var(--skill-offset-y, 0px) + #{rem(4px)});
+    translate: var(--skill-offset-x, 0px) calc(var(--skill-offset-y, 0px) + #{rem(6px)});
     rotate: -1deg;
   }
 }
