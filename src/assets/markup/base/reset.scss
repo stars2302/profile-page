@@ -110,6 +110,13 @@ section {
   display: block;
 }
 
+html,
+body,
+#root {
+  min-height: 100%;
+  background: $color-page-bg;
+}
+
 body {
   line-height: 1;
 }
