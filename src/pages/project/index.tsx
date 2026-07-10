@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ImgHTMLAttributes } from "react";
 import { createPortal } from "react-dom";
 import { Icon } from "@iconify/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -8,6 +8,38 @@ import { projectContents } from "@/data/projectContents";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+type ProjectImageProps = ImgHTMLAttributes<HTMLImageElement> & {
+  frameClassName?: string;
+};
+
+function ProjectImage({ alt, className, frameClassName = "", onError, onLoad, src, ...imageProps }: ProjectImageProps) {
+  const [imageState, setImageState] = useState<{
+    src: ProjectImageProps["src"];
+    status: "loaded" | "error";
+  } | null>(null);
+  const imageStatus = imageState && imageState.src === src ? imageState.status : "loading";
+
+  return (
+    <span className={`project-image-frame ${frameClassName} is-${imageStatus}`}>
+      <span className="project-image-loader" aria-hidden="true" />
+      <img
+        {...imageProps}
+        src={src}
+        alt={alt}
+        className={className}
+        onLoad={(event) => {
+          setImageState({ src, status: "loaded" });
+          onLoad?.(event);
+        }}
+        onError={(event) => {
+          setImageState({ src, status: "error" });
+          onError?.(event);
+        }}
+      />
+    </span>
+  );
+}
 
 function Project() {
   const [selectedProject, setSelectedProject] = useState<(typeof projectContents)[number] | null>(null);
@@ -66,7 +98,12 @@ function Project() {
                 className="project-thumb"
                 onClick={() => setSelectedProject(project)}
               >
-                <img src={project.images[0]} alt={`${project.name} 썸네일`} />
+                <ProjectImage
+                  src={project.images[0]}
+                  alt={`${project.name} 썸네일`}
+                  loading="lazy"
+                  decoding="async"
+                />
               </button>
               <button
                 type="button"
@@ -113,7 +150,13 @@ function Project() {
                 >
                   {selectedProject.images.map((image, index) => (
                     <SwiperSlide key={image}>
-                      <img src={image} alt={`${selectedProject.name} 화면 ${index + 1}`} />
+                      <ProjectImage
+                        src={image}
+                        alt={`${selectedProject.name} 화면 ${index + 1}`}
+                        frameClassName="project-slide-image"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
                     </SwiperSlide>
                   ))}
                 </Swiper>

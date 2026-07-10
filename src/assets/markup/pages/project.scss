@@ -26,6 +26,10 @@
       background: transparent;
       cursor: pointer;
 
+      .project-image-frame {
+        border-radius: inherit;
+      }
+
       &::before {
         content: '';
         position: absolute;
@@ -61,11 +65,10 @@
     }
   }
 
-  img {
+  .project-image-frame {
     display: block;
     width: 100%;
     aspect-ratio: 107/96;
-    object-fit: cover;
   }
 
   .project-like {
@@ -88,6 +91,92 @@
     &.is-active {
       color: $color-coral;
     }
+  }
+}
+
+.project-image-frame {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba($color-white, 0.08), rgba($color-white, 0.03)),
+    rgba($color-black, 0.18);
+  isolation: isolate;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+  }
+
+  &.is-loaded {
+    img {
+      opacity: 1;
+    }
+
+    .project-image-loader {
+      opacity: 0;
+    }
+  }
+
+  &.is-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img,
+    .project-image-loader {
+      opacity: 0;
+    }
+
+    &::after {
+      content: '이미지를 불러오지 못했어요';
+      position: relative;
+      z-index: 1;
+      padding: rem(12px);
+      color: rgba($color-white, $opacity-high);
+      font-size: rem($font-size-xs);
+      line-height: 1.4;
+      text-align: center;
+    }
+  }
+}
+
+.project-image-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(100deg,
+      transparent 0%,
+      rgba($color-white, 0.16) 46%,
+      transparent 56%),
+    linear-gradient(135deg, rgba($color-surface-light, 0.48), rgba($color-surface-dark, 0.72));
+  background-size: 220% 100%, 100% 100%;
+  animation: project-image-loading 1.2s ease-in-out infinite;
+  transition: opacity 0.2s ease;
+}
+
+@keyframes project-image-loading {
+  from {
+    background-position: 120% 0, 0 0;
+  }
+
+  to {
+    background-position: -120% 0, 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-image-frame img,
+  .project-image-loader {
+    transition: none;
+  }
+
+  .project-image-loader {
+    animation: none;
   }
 }
 
@@ -140,10 +229,16 @@
           rgba($color-black, $opacity-medium) 100%);
     }
 
-    img {
+    .project-image-frame {
       display: block;
       width: 100%;
       aspect-ratio: 1920 / 1040;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
@@ -322,10 +417,15 @@
       height: 100%;
     }
 
-    .project-swiper img {
+    .project-swiper .project-image-frame {
       width: 100%;
       height: 100%;
       aspect-ratio: auto;
+    }
+
+    .project-swiper img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
