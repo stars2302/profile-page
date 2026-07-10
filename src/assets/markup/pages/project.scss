@@ -70,8 +70,8 @@
 
   .project-like {
     position: absolute;
-    bottom: rem(16px);
-    right: rem(16px);
+    bottom: clamp(rem(4px), 6cqw, rem(12px));
+    right: clamp(rem(8px), 8cqw, rem(16px));
     z-index: 2;
     display: flex;
     align-items: center;
@@ -80,8 +80,7 @@
     border: 0;
     background: transparent;
     color: rgba($color-white, 0.8);
-    font-size: rem(28px);
-    font-size: clamp(rem(18px), 18cqw, rem(34px));
+    font-size: clamp(rem(24px), 14cqw, rem(32px));
     opacity: 0;
     transition: opacity 0.5s;
     cursor: pointer;
@@ -92,7 +91,8 @@
   }
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (hover: none),
+(pointer: coarse) {
   .project-cont {
     .project-item {
       .project-thumb::before {
@@ -284,7 +284,12 @@
   }
 }
 
+// 태블릿
 @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-tablet-max) {
+  .project-cont .project-list {
+    grid-template-columns: repeat(auto-fill, minmax(rem(155px), 1fr));
+  }
+
   .project-popup {
     .popup-body {
       display: grid;
@@ -368,7 +373,12 @@
   }
 }
 
+// 데스크톱
 @media (min-width: $breakpoint-desktop) {
+  .project-cont .project-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
   .project-popup {
     .popup-body {
       display: grid;
