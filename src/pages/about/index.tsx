@@ -41,7 +41,7 @@ function About() {
       </section>
 
       <section className="more-area">
-        <h2 className="about-title">좀 더 알고 싶으시다면,</h2>
+        <h2 className="about-title">좀 더 알고</h2>
         <dl>
           {aboutContents.interview.map((item) => (
             <Fragment key={item.id}>
