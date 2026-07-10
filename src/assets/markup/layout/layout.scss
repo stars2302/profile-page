@@ -1,10 +1,16 @@
 @use '../base/util.scss' as *;
 @use '../base/variables.scss' as *;
 
+html,
+body,
+#root {
+  min-height: 100%;
+  background: linear-gradient(to bottom, $color-page-bg-light, $color-page-bg);
+}
+
 .page-wrap {
   width: 100%;
-  height: 100vh;
-  height: var(--app-height, 100dvh);
+  height: 100dvh;
   overflow-y: auto;
   overflow-x: hidden;
   background: linear-gradient(to bottom, $color-page-bg-light, $color-page-bg);
