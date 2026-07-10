@@ -345,14 +345,14 @@
 
     dd {
       position: relative;
-      width: 80%;
+      width: 86%;
       max-width: 100%;
       margin-left: auto;
       padding: rem(10px) rem(16px);
       border-radius: rem(16px) rem(16px) 0 rem(16px);
       background: var(--about-answer-bg);
       color: rgba($color-white, $opacity-strong);
-      font-size: rem($font-size-sm);
+      font-size: rem($font-size-base);
       line-height: 1.66;
       letter-spacing: -0.02em;
       word-break: keep-all;
