@@ -170,6 +170,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .project-image-frame img,
   .project-image-loader {
     transition: none;
@@ -476,7 +477,7 @@
 // 데스크톱
 @media (min-width: $breakpoint-desktop) {
   .project-cont .project-list {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
   .project-popup {
