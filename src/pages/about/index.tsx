@@ -1,6 +1,32 @@
 import { Icon } from "@iconify/react";
 import { aboutContents } from "@/data/aboutContents";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
+
+type HighlightParagraph = {
+  text: string;
+  keywords: string[];
+};
+
+type AnswerParagraph = string | HighlightParagraph;
+
+const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const renderParagraph = (paragraph: AnswerParagraph): ReactNode => {
+  if (typeof paragraph === "string") {
+    return paragraph;
+  }
+
+  const pattern = paragraph.keywords.map(escapeRegExp).join("|");
+  const parts = paragraph.text.split(new RegExp(`(${pattern})`, "g"));
+
+  return parts.map((part, index) => {
+    if (paragraph.keywords.includes(part)) {
+      return <b key={`${part}-${index}`}>{part}</b>;
+    }
+
+    return part;
+  });
+};
 
 function About() {
   return (
@@ -12,19 +38,22 @@ function About() {
           </strong>
         </h2>
         <p className="about-copy">
-          디자이너의 의도를 정확히 이해하고 디자인 완성도를 충실히 구현하는 것을
-          중요하게 생각하며,
-          프론트엔드 개발자와 적극적으로 소통해 구현 방식과 구조를 함께
-          고민합니다.
+          “작업하면서 보이는 반복은 그냥 두지 않습니다.”
         </p>
+
         <p className="about-copy">
-          특히 공통 컴포넌트 기반의 구조 설계를 선호하며, 유지보수성과 확장성을
-          고려한 퍼블리싱을 지향합니다.
+          디자인을 받으면 먼저 <b>레이아웃과 공통 요소</b>를 살펴보며 <b>전체 구조</b>를 정리합니다. <br />
+          구현 과정에서 반복되는 패턴은 <b>컴포넌트</b>와 <b>공통 스타일</b>로 묶어, 이후의 <b>수정과 확장</b>이 편해지도록 작업합니다.
         </p>
+
         <p className="about-copy">
-          레이아웃 영역에서는 Slot 패턴과 Compound Component 구조를 활용해
-          HTML 마크업을 컴포넌트 내부로 캡슐화하고, 사용부에서는 선언적이고
-          의미 중심적인 인터페이스만 노출되도록 설계하는 것을 지향합니다.
+          다만 좋은 결과물은 <b>구조만 잘 잡는다고 완성된다고 생각하지 않습니다.</b> <br />
+          다양한 화면 크기와 <b>디바이스 환경</b>에서 실제로 어떻게 보이고 동작하는지 확인하고, 사용자가 불편함을 느낄 수 있는 지점을 함께 고민합니다.
+        </p>
+
+        <p className="about-copy">
+          또한 디자이너와 개발자 사이에서 <b>서로의 생각이 다르게 이해되지 않도록</b>, 필요한 내용을 정리하고 질문하며 <b>기준을 맞춰가는 과정</b>을 중요하게 생각합니다. <br />
+          UI를 구현하는 데서 끝나지 않고, <b>더 일관된 경험</b>과 <b>더 편한 협업</b>을 만드는 웹 퍼블리셔를 지향합니다.
         </p>
       </section>
 
@@ -48,7 +77,11 @@ function About() {
               <dt>
                 {item.id}. {item.question}
               </dt>
-              <dd>{item.answer}</dd>
+              <dd>
+                {item.answer.map((paragraph, index) => (
+                  <p key={`${item.id}-${index}`}>{renderParagraph(paragraph)}</p>
+                ))}
+              </dd>
             </Fragment>
           ))}
         </dl>

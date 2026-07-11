@@ -139,9 +139,15 @@
     line-height: 1.7;
     letter-spacing: -0.025em;
     word-break: keep-all;
+    color: rgba($color-white, $opacity-strong);
 
     &+.about-copy {
       margin-top: rem(14px);
+    }
+
+    b {
+      font-weight: 500;
+      color: $color-white;
     }
   }
 
@@ -357,6 +363,19 @@
       letter-spacing: -0.02em;
       word-break: keep-all;
       box-shadow: 0 rem(12px) rem(26px) rgba($color-black, $opacity-subtle);
+
+      p {
+        margin: 0;
+
+        &+p {
+          margin-top: rem(8px);
+        }
+      }
+
+      b {
+        color: $color-white;
+        font-weight: 500;
+      }
     }
   }
 
