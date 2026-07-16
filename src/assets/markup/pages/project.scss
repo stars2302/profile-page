@@ -52,8 +52,19 @@
       }
     }
 
-    &:hover,
-    &:focus-within {
+    &:hover {
+      .project-thumb::before {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .project-like {
+        opacity: 1;
+      }
+    }
+
+    &:has(.project-thumb:focus-visible),
+    &:has(.project-like:focus-visible) {
       .project-thumb::before {
         opacity: 1;
         transform: translateY(0);
@@ -192,6 +203,14 @@
     }
 
     .project-like {
+      opacity: 1;
+    }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-cont {
+    .project-like.is-active {
       opacity: 1;
     }
   }

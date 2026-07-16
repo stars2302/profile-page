@@ -206,9 +206,11 @@ function Project() {
                     </ul>
                   </div>
 
-                  <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
-                    웹 페이지로 이동하기
-                  </a>
+                  {selectedProject.websiteUrl && (
+                    <a className="project-link" href={selectedProject.websiteUrl} target="_blank" rel="noopener noreferrer">
+                      웹 페이지로 이동하기
+                    </a>
+                  )}
                 </div>
 
                 {selectedMoreContents.length > 0 && (
