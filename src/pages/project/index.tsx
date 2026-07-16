@@ -188,6 +188,10 @@ function Project() {
                   <dd>{selectedProject.period}</dd>
                 </div>
                 <div>
+                  <dt>플랫폼</dt>
+                  <dd>{selectedProject.platform.join(", ")}</dd>
+                </div>
+                <div>
                   <dt>역할</dt>
                   <dd>{selectedProject.role}</dd>
                 </div>
