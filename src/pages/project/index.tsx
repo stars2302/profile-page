@@ -147,6 +147,7 @@ function Project() {
                   pagination={{ clickable: true }}
                   spaceBetween={12}
                   slidesPerView={1}
+                  watchOverflow={false}
                 >
                   {selectedProject.images.map((image, index) => (
                     <SwiperSlide key={image}>
